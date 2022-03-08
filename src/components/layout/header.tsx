@@ -51,9 +51,9 @@ const Header = ({ location }: Props): JSX.Element => {
                       to: '/about/',
                       title: '关于',
                     },
-                  ].map(({ partiallyActive, to, title }) => {
+                  ].map(({ partiallyActive, to, title }, key) => {
                     return (
-                      <li>
+                      <li key={key}>
                         <Link
                           activeClassName="!text-sky-50"
                           className="p-2 transition-colors duration-500 hover:text-sky-100"

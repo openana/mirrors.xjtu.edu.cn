@@ -88,9 +88,9 @@ const Footer = ({ location }: Props): JSX.Element => {
                     to: '/sitemap/',
                     title: '网站地图',
                   },
-                ].map(({ to, title }) => {
+                ].map(({ to, title }, key) => {
                   return (
-                    <li className="ml-6">
+                    <li className="ml-6" key={key}>
                       <Link
                         className="transition-colors duration-500 hover:text-white"
                         to={to}
