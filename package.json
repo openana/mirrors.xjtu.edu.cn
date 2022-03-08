@@ -19,6 +19,7 @@
   "dependencies": {
     "@mdx-js/mdx": "v1",
     "@mdx-js/react": "v1",
+    "@react-icons/all-files": "^4.1.0",
     "autoprefixer": "^10.4.2",
     "gatsby": "^4.9.2",
     "gatsby-plugin-image": "^2.9.0",
@@ -34,9 +35,11 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
+    "react-icons": "^4.3.1",
     "tailwindcss": "^3.0.23"
   },
   "devDependencies": {
+    "@types/js-yaml": "^4.0.5",
     "@types/node": "^17.0.21",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.13",

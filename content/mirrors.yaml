@@ -1,0 +1,208 @@
+version: 1
+
+data:
+  - id: alpine
+    name: Alpine Linux
+    desc: Alpine Linux is a Linux distribution based on musl and BusyBox, designed for security, simplicity, and resource efficiency. It uses OpenRC for its init system and compiles all user-space binaries as position-independent executables with stack-smashing protection.
+
+  - id: anaconda
+    name: Anaconda
+    desc: Anaconda is a distribution of the Python and R programming languages for scientific computing (data science, machine learning applications, large-scale data processing, predictive analytics, etc.), that aims to simplify package management and deployment. The distribution includes data-science packages suitable for Windows, Linux, and macOS.
+    docs: /docs/anaconda
+
+  - id: archlinux
+    name: Arch Linux
+    desc: Arch Linux (/ɑːrtʃ/) is a Linux distribution created for computers with x86-64 processors. Arch Linux adheres to the KISS principle ("Keep It Simple, Stupid"). The project attempts to have minimal distribution-specific changes, and therefore minimal breakage with updates, and be pragmatic over ideological design choices and focus on customizability rather than user-friendliness.
+    docs: docs/archlinux
+
+  - id: archlinuxcn
+    name: Arch Linux 中文社区仓库
+    desc: Arch Linux 中文社区仓库是由 Arch Linux 中文社区驱动的非官方软件仓库，包含许多官方仓库未提供的额外的软件包，以及已有软件的 git 版本等变种。一部分软件包的打包脚本来源于 AUR，但也有许多包与 AUR 不一样。
+    docs: /docs/archlinuxcn
+
+  - id: artixlinux
+    name: Artix Linux
+    desc: Artix Linux, or Artix is a rolling-release distribution based on Arch Linux that uses OpenRC, runit, s6, suite66 or dinit init instead of systemd. Artix Linux has its own package repositories but, as a pacman-based distribution, can use packages from Arch Linux repositories or any other derivative distribution, even packages explicitly depending on systemd. The Arch User Repository (AUR) can also be used.
+
+  - id: centos
+    name: CentOS
+    desc: CentOS (/ˈsɛntɒs/, from Community Enterprise Operating System; also known as CentOS Linux) is a Linux distribution that provides a free and open-source community-supported computing platform, functionally compatible with its upstream source, Red Hat Enterprise Linux (RHEL). While the distribution was discontinued at the end of 2021, development of CentOS Stream, its midstream variant, continues.
+    docs: docs/centos
+
+  - name: CentOS AltArch
+    desc: To extend the CentOS Linux usability base beyond the architectures supported already in the code base, and beyond what is being done in the Core SIG. This SIG is now producing CentOS Linux 7 install images and full trees for ppc64, ppc64le, i386, armhfp (arm v7 32-bit), aarch64 (arm v8 64-bit).
+    alts:
+      - //d.mirrors.xjtu.edu.cn/centos-altarch
+      - //m.mirrorz.org/centos-altarch
+      - //mirrors.cernet.edu.cn/centos-altarch
+      - //mirrors.cngi.edu.cn/centos-altarch
+
+  - id: ceph
+    name: Ceph
+    desc: Ceph (pronounced /ˈsɛf/) is an open-source software-defined storage platform that implements object storage on a single distributed computer cluster and provides 3-in-1 interfaces for object-, block- and file-level storage. Ceph aims primarily for completely distributed operation without a single point of failure, scalability to the exabyte level, and to be freely available.
+    docs: docs/ceph
+
+  - id: cpan
+    name: CPAN
+    desc: The Comprehensive Perl Archive Network (CPAN) is a repository of over 250,000 software modules and accompanying documentation for 39,000 distributions, written in the Perl programming language by over 12,000 contributors. CPAN can denote either the archive network or the Perl program that acts as an interface to the network and as an automated software installer (somewhat like a package manager). Most software on CPAN is free and open source software.
+
+  - id: cran
+    name: CRAN
+    desc: The Comprehensive R Archive Network (CRAN) is a network of ftp and web servers around the world that store identical, up-to-date, versions of code and docs for R. Please use the CRAN mirror nearest to you to minimize network load.
+
+  - id: ctan
+    name: CTAN
+    desc: The Comprehensive TEX Archive Network (CTAN) is the central place for all kinds of material around TEX. CTAN has currently 6120 packages. 2818 contributors have contributed to it. Most of the packages are free and can be downloaded and used immediately.
+
+  - id: ctex
+    tags:
+      - deprecated
+    name: CTeX
+    desc: CTeX 中文套装是基于 Windows 下的 MiKTeX 系统，集成了编辑器 WinEdt 和 PostScript 处理软件 Ghostscript 和 GSview 等主要工具。CTeX 中文套装在 MiKTeX 的基础上增加了对中文的完整支持。CTeX 中文套装支持 CJK, xeCJK, CCT, TY 等多种中文 TeX 处理方式。
+    docs: docs/ctex
+
+  - id: cygwin
+    name: Cygwin
+
+  - id: debian
+    name: Debian
+    desc: Debian is an operating system and a distribution of Free Software. It is maintained and updated through the work of many users who volunteer their time and effort.
+    docs: docs/debian
+
+  - id: debian-cd
+    name: Debian Releases
+
+  - id: debian-security
+    name: Debian Security
+
+  - id: deepin
+    name: Deepin
+    desc: Deepin is the top Linux distribution from China, devoted to providing a beautiful, easy-to-use, safe, and reliable operating system for global users.
+
+  - id: deepin-cd
+    name: Deepin Releases
+
+  - id: docker-ce
+    name: Docker CE
+    desc: Docker is a set of platform as a service products that use OS-level virtualization to deliver software in packages called containers. Containers are isolated from one another and bundle their own software, libraries and configuration files; they can communicate with each other through well-defined channels.
+
+  - id: epel
+    name: EPEL
+    docs: docs/epel
+
+  - id: fedora
+    name: Fedora
+    desc: Fedora creates an innovative, free, and open source platform for hardware, clouds, and containers that enables software developers and community members to build tailored solutions for their users.
+    docs: docs/fedora
+
+  - name: Fedora AltArch
+
+  - id: gnu
+    name: GNU
+
+  - id: homebrew-bottles
+    name: Homebrew Bottles
+    desc: Homebrew is a free and open-source software package management system that simplifies the installation of software on Apple's operating system macOS as well as Linux.
+    docs: docs/homebrew-bottles
+
+  - id: iina
+    name: IINA
+
+  - id: jenkins
+    name: Jenkins
+
+  - id: Kali
+    name: Kali
+    desc: Kali Linux is a Debian-derived Linux distribution designed for digital forensics and penetration testing. It is maintained and funded by Offensive Security.
+
+  - id: kali-images
+    name: Kali Releases
+
+  - id: kernel
+    name: Kernel
+    desc: The Linux kernel is a free and open-source, monolithic, modular, multitasking, Unix-like operating system kernel. It was conceived and created in 1991 by Linus Torvalds for his i386-based PC, and it was soon adopted as the kernel for the GNU operating system, which was created as a free replacement for UNIX.
+
+  - id: kodi
+    name: Kodi
+    desc: Kodi is a free and open-source media player software application developed by the Kodi Foundation, a non-profit technology consortium. Kodi is available for multiple operating systems and hardware platforms, with a software 10-foot user interface for use with televisions and remote controls.
+
+  - id: manjaro
+    name: Manjaro
+
+  - id: manjaro-cd
+    name: Manjaro Releases
+
+  - id: mongodb
+    name: MongoDB
+    desc: MongoDB is a source-available cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with optional schemas. MongoDB is developed by MongoDB Inc. and licensed under the Server Side Public License.
+
+  - id: openwrt
+    name: OpenWrt
+    desc: The OpenWrt Project is a Linux operating system targeting embedded devices.
+
+  - id: pypi
+    name: PyPI
+    desc: The Python Package Index (PyPI) is a repository of software for the Python programming language.
+    docs: docs/pypi
+
+  - id: raspberrypi
+    name: Raspberry Pi OS
+    desc: Raspberry Pi OS is a Debian-based operating system for Raspberry Pi. Since 2015, it has been officially provided by the Raspberry Pi Foundation as the primary operating system for the Raspberry Pi family of compact single-board computers.
+
+  - id: raspbian
+    name: Raspbian
+    desc: Raspbian is a free operating system based on Debian optimized for the Raspberry Pi hardware. An operating system is the set of basic programs and utilities that make your Raspberry Pi run.
+
+  - id: raspbian-images
+    name: Raspbian Releases
+
+  - id: rfc
+    name: RFC
+    desc: RFC documents contain technical specifications and organizational notes for the Internet.
+
+  - id: ros
+    name: ROS
+    desc: The Robot Operating System (ROS) is a set of software libraries and tools for building robot applications.
+
+  - id: ros2-main
+    name: ROS2 for Ununtu
+
+  - id: ros2-rhel-main
+    name: ROS2 for RHEL
+
+  - id: rpmfusion
+    name: RPM Fusion
+    desc: RPM Fusion provides software that the Fedora Project or Red Hat doesn't want to ship.
+    docs: docs/rpmfusion
+
+  - id: ubuntu
+    name: Ubuntu
+    desc: Ubuntu is the modern, open source operating system on Linux for the enterprise server, desktop, cloud, and IoT.
+    docs: docs/ubuntu
+
+  - id: ubuntu-ports
+    name: Ubuntu Ports
+
+  - id: ubuntu-releases
+    name: Ubuntu Releases
+
+  - id: videolan-ftp
+    name: VideoLAN
+    desc: VideoLAN is a non-profit organization which develops software for playing video and other media formats.
+
+  - id: vim
+    name: Vim
+    desc: Vim is a free and open-source, screen-based text editor program for Unix. It is an improved clone of Bill Joy's vi. Vim's author, Bram Moolenaar, derived Vim from a port of the Stevie editor for Amiga and released a version to the public in 1991.
+
+  - id: virtualbox
+    name: VirtualBox
+
+  - id: zabbix
+    name: Zabbix
+    desc: Zabbix is an open-source monitoring software tool for diverse IT components, including networks, servers, virtual machines and cloud services. Zabbix provides monitoring metrics, among others network utilization, CPU load and disk space consumption.
+
+  - id: github.com/Homebrew/brew
+    name: Homebrew/brew.git
+    type: git
+    desc: Homebrew is a free and open-source software package management system that simplifies the installation of software on Apple's operating system, macOS, as well as Linux.
+    docs: docs/homebrew
