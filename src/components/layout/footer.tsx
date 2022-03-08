@@ -68,8 +68,9 @@ const Footer = ({ location }: Props): JSX.Element => {
               . 保留所有权利。
             </div>
             <div className="text-white">
-              服务状态: <span className="text-yellow-300">未知</span>{' '}
+              服务状态: <span className="text-gray-300">未知</span>{' '}
               <span className="text-green-300">正常运行</span>{' '}
+              <span className="text-yellow-300">部分可用</span>{' '}
               <span className="text-red-300">不可用</span>
             </div>
             <div>

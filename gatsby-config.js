@@ -1,3 +1,5 @@
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
 /** @type {import('gatsby').GatsbyConfig} */
 module.exports = {
   siteMetadata: {
@@ -31,4 +33,16 @@ module.exports = {
     },
   ],
   trailingSlash: 'always',
+  developMiddleware: (app) => {
+    app.use(
+      '/api',
+      createProxyMiddleware({
+        target: 'http://mirrors.xjtu.edu.cn',
+        autoRewrite: true,
+        onProxyReq: (proxyReq, req, res) => {
+          proxyReq.setHeader('Host', 'mirrors.xjtu.edu.cn');
+        },
+      }),
+    );
+  },
 };
