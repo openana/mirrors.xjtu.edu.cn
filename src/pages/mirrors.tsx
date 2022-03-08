@@ -1,6 +1,7 @@
 import * as React from 'react';
+import { Link } from 'gatsby';
 
-const IndexPage = () => {
+const MirrorsPage = () => {
   return (
     <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-8">
       <title>Home Page</title>
@@ -11,11 +12,11 @@ const IndexPage = () => {
         🎉🎉🎉
       </h1>
       <p>
-        Edit <code>src/pages/index.tsx</code> to see this page update in
+        Edit <code>src/pages/mirrors.tsx</code> to see this page update in
         real-time. 😎
       </p>
     </div>
   );
 };
 
-export default IndexPage;
+export default MirrorsPage;

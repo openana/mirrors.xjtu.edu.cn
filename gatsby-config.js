@@ -1,17 +1,34 @@
-/** @type {import('gatsby).GatsbyConfig} */
+/** @type {import('gatsby').GatsbyConfig} */
 module.exports = {
   siteMetadata: {
-    title: `XJTU Content Mirrors`,
-    siteUrl: `https://mirrors.xjtu.edu.cn`,
-    description: `The Xi'an Jiaotong University Content Mirrors website.`,
+    title: `XJTU Software Mirrors`,
+    siteUrl: `https://mirrors.xjtu.edu.cn/`,
+    description: `The Xi'an Jiaotong University Software Mirrors website.`,
   },
   plugins: [
-    'gatsby-plugin-emotion',
+    'gatsby-plugin-postcss',
     'gatsby-plugin-image',
-    'gatsby-plugin-mdx',
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-sharp',
     'gatsby-plugin-sitemap',
+    'gatsby-plugin-mdx',
+    'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'pages',
+        path: './src/pages/',
+      },
+      __key: 'pages',
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'templates',
+        path: './src/templates/',
+      },
+      __key: 'templates',
+    },
   ],
+  trailingSlash: 'always',
 };
