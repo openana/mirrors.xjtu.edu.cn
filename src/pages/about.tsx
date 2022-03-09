@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
-import { BsArrowBarUp } from 'react-icons/bs';
+import { BsArrowBarUp, BsPencilSquare } from 'react-icons/bs';
 
 import { Markdown } from '../components/markdown';
 import { IMdxData } from '../components/markdown/types';
@@ -45,16 +45,18 @@ const AboutPage = () => {
               <div className="text-sm leading-6 mt-12">
                 <div className="flex justify-between text-slate-500">
                   <div>
-                    <a className="hover:text-slate-900" href="#top">
-                      回到页面顶端 <BsArrowBarUp className="inline" />
+                    <a className="transition-colors duration-300 hover:text-slate-900" href="#top">
+                      回到页面顶端{' '}
+                      <BsArrowBarUp className="inline h-4 mb-0.5" />
                     </a>
                   </div>
                   <div>
                     <a
-                      className="hover:text-slate-900"
+                      className="transition-colors duration-300 hover:text-slate-900"
                       href={`https://github.com/openana/mirrors.xjtu.edu.cn/edit/master/content/${data.mdx.slug}.mdx`}
                     >
-                      在 GitHub 上编辑此页
+                      在 GitHub 上编辑此页{' '}
+                      <BsPencilSquare className="inline h-4 mb-0.5" />
                     </a>
                   </div>
                 </div>

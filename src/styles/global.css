@@ -3,13 +3,22 @@
 @tailwind utilities;
 
 @layer components {
+  /* TODO: override bad code */
+  .backdrop-blur-8px {
+    backdrop-filter: blur(8px);
+  }
+
   .mirrors-desc > highlight {
     @apply font-medium bg-blue-200;
   }
   .prose .anchor {
-    @apply ml-1.5 opacity-0 no-underline transition-colors duration-300 text-sky-300 hover:text-sky-600;
+    @apply ml-1.5 opacity-0 no-underline hover:underline transition-colors duration-300 text-sky-300 hover:text-sky-600;
   }
   .prose h2:hover .anchor {
     @apply opacity-100;
+  }
+
+  .app-footer a.external-link {
+    @apply font-medium underline underline-offset-2 transition-colors duration-300 decoration-gray-300 hover:text-white hover:decoration-white;
   }
 }

@@ -1,7 +1,13 @@
 import * as React from 'react';
 import { graphql, useStaticQuery, Link, PageProps } from 'gatsby';
 
-import { BsChatText, BsCompass, BsDisc, BsNewspaper } from 'react-icons/bs';
+import {
+  BsChatText,
+  BsCompass,
+  BsDisc,
+  BsFilter,
+  BsNewspaper,
+} from 'react-icons/bs';
 
 import { FilesTable, MirrorsTable } from '../../components/mirrors/table';
 import { IMirrors } from '../../components/mirrors/table/types';
@@ -34,16 +40,28 @@ const MirrorsPage: React.FC<PageProps> = ({ location }, props) => {
       <div className="grid grid-cols-4 gap-4 py-10">
         <div className="col-span-3">
           <div className="mb-4">
-            <label className="relative block">
-              <span className="sr-only">Search</span>
-              <span className="absolute inset-y-0 left-0 flex items-center pl-2"></span>
-              <input
-                className="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-                placeholder="Search for anything..."
-                type="text"
-                name="search"
-              />
-            </label>
+            <div className="grid grid-cols-6 gap-4">
+              <div className="col-span-2">
+                <label className="relative block group">
+                  <span className="sr-only">Search</span>
+                  <span className="absolute inset-y-0 left-0 flex items-center pl-2">
+                    <BsFilter className="h-4 w-4 transition-colors duration-500 fill-slate-300 group-hover:fill-slate-500" />
+                  </span>
+                  <span className="absolute inset-y-0 right-0 flex items-center pr-3">
+                    <span className="font-semibold text-xs transition-colors duration-500 text-slate-300 group-hover:text-slate-500">
+                      ⌘F
+                    </span>
+                  </span>
+                  <input
+                    className="placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-1 pl-7 pr-10 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+                    placeholder="过滤全部镜像..."
+                    type="text"
+                    name="filter"
+                  />
+                </label>
+              </div>
+              <div className="col-span-1"></div>
+            </div>
           </div>
           <div className="mb-4">
             {location.pathname.replace(/^(\/mirrors\.xjtu\.edu\.cn)/, '') ===

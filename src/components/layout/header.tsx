@@ -7,7 +7,7 @@ interface Props {
 
 const Header = ({ location }: Props): JSX.Element => {
   return (
-    <div className="sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors duration-500 bg-sky-700/80 supports-backdrop-blur:bg-sky-700/80">
+    <div className="sticky top-0 z-40 w-full backdrop-blur-8px flex-none transition-colors duration-500 bg-sky-700/80">
       <div className="max-w-8xl mx-auto">
         <div className="py-4 px-4 sm:px-6 md:px-8">
           <div className="relative flex items-center">
