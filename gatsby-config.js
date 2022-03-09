@@ -82,7 +82,7 @@ module.exports = {
       __key: 'templates',
     },
   ],
-  pathPrefix: '/.dev',
+  pathPrefix: '/mirrors.xjtu.edu.cn',
   trailingSlash: 'always',
   developMiddleware: (app) => {
     app.use(

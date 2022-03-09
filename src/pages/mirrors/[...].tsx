@@ -46,7 +46,7 @@ const MirrorsPage: React.FC<PageProps> = ({ location }, props) => {
             </label>
           </div>
           <div className="mb-4">
-            {location.pathname.replace(/^(\/\.dev)/, '') === '/mirrors/' ? (
+            {location.pathname.replace(/^(\/mirrors\.xjtu\.edu\.cn)/, '') === '/mirrors/' ? (
               <MirrorsTable mirrors={mirrors} setMirrors={setMirrors} />
             ) : (
               <FilesTable location={location} {...props} />
