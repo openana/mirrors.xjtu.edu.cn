@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { GatsbySSR } from 'gatsby';
 
-import Layout from './src/components/layout';
+import { Layout } from './src/components/layout';
 
 import './src/styles/global.css';
 

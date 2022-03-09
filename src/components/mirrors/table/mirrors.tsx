@@ -38,13 +38,14 @@ const MirrorsTable: React.FC<{ mirrors: IMirrors; setMirrors: any }> = ({
     });
   };
 
+  const FETCH_ENDPOINT = '/api/mirrors/';
   const FETCH_INTERVAL = 300000; // 5 minutes
 
   React.useEffect(() => {
     const interval = setInterval(() => {
       setCount(!count);
     }, FETCH_INTERVAL);
-    const raw = localStorage.getItem('fetch:cache:/api/mirrors/');
+    const raw = localStorage.getItem('fetch:cache:' + FETCH_ENDPOINT);
     if (raw) {
       const cache: { data: IMirrorsData[]; time: number } = JSON.parse(raw);
       if (Date.now() - cache.time < FETCH_INTERVAL) {
@@ -53,12 +54,12 @@ const MirrorsTable: React.FC<{ mirrors: IMirrors; setMirrors: any }> = ({
         return () => clearInterval(interval);
       }
     }
-    fetch('/api/mirrors/')
+    fetch(FETCH_ENDPOINT)
       .then((res) => res.json())
       .then((data) => {
         console.log('saving cache', { data: data, time: Date.now() });
         localStorage.setItem(
-          'fetch:cache:/api/mirrors/',
+          'fetch:cache:' + FETCH_ENDPOINT,
           JSON.stringify({
             data: data,
             time: Date.now(),
@@ -82,12 +83,12 @@ const MirrorsTable: React.FC<{ mirrors: IMirrors; setMirrors: any }> = ({
           <th className="flex-none w-4 text-left">
             <BsCloudFill className="inline text-base h-4 mb-0.5" />
           </th>
-          <th className="flex-none basis-1/4 text-left">
+          <th className="flex-none basis-1/5 text-left">
             镜像名称
             <BsSortAlphaDown className="inline text-base h-4 mb-0.5" />
           </th>
           <th className="flex-auto overflow-hidden text-left">镜像介绍</th>
-          <th className="flex-none w-48 text-right">同步状态</th>
+          <th className="flex-none w-32 text-right">同步状态</th>
         </tr>
       </thead>
       <tbody className="flex flex-col text-slate-600">

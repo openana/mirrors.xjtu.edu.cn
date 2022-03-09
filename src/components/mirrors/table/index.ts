@@ -1,3 +1,2 @@
-import FilesTable from './files';
-import MirrorsTable from './mirrors';
-export { FilesTable, MirrorsTable };
+export { default as FilesTable } from './files';
+export { default as MirrorsTable } from './mirrors';

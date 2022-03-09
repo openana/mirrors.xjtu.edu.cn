@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .mirrors-desc > highlight {
+    @apply font-medium bg-sky-100;
+  }
+}

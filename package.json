@@ -31,11 +31,16 @@
     "gatsby-plugin-sitemap": "^5.9.0",
     "gatsby-source-filesystem": "^4.9.0",
     "gatsby-transformer-sharp": "^4.9.0",
+    "gatsby-transformer-yaml-full": "^4.0.4",
+    "gatsby-yaml-full-markdown": "^4.1.0",
+    "mdx-yaml-full": "^2.0.0",
     "postcss": "^8.4.8",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.3.1",
+    "rehype-katex": "^6.0.2",
+    "remark-math": "^5.1.1",
     "tailwindcss": "^3.0.23"
   },
   "devDependencies": {

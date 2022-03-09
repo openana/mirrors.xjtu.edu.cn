@@ -25,6 +25,7 @@ const FilesTable: React.FC<PageProps> = ({ location }) => {
     });
   };
 
+  const FETCH_ENDPOINT = '/api' + location.pathname.replace(/^(\/\.dev)/, '');
   const FETCH_INTERVAL = 3600000; // 60 minutes
 
   React.useEffect(() => {
@@ -33,7 +34,7 @@ const FilesTable: React.FC<PageProps> = ({ location }) => {
       loading: true,
       error: null,
     });
-    const raw = localStorage.getItem(`fetch:cache:/api${location.pathname}`);
+    const raw = localStorage.getItem('fetch:cache:' + FETCH_ENDPOINT);
     if (raw) {
       const cache: { data: IFilesData[]; time: number } = JSON.parse(raw);
       if (Date.now() - cache.time < FETCH_INTERVAL) {
@@ -42,13 +43,13 @@ const FilesTable: React.FC<PageProps> = ({ location }) => {
         return;
       }
     }
-    fetch(`/api${location.pathname}`)
+    fetch(FETCH_ENDPOINT)
       .then((res) => res.json())
       .then((data) => {
         if (data.length < 2000) {
           console.log('saving cache', { data: data, time: Date.now() });
           localStorage.setItem(
-            `fetch:cache:/api${location.pathname}`,
+            'fetch:cache:' + FETCH_ENDPOINT,
             JSON.stringify({
               data: data,
               time: Date.now(),

@@ -1,3 +1,5 @@
+const remarkMath = import('remark-math');
+const rehypeKatex = import('rehype-katex');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 /** @type {import('gatsby').GatsbyConfig} */
@@ -12,9 +14,44 @@ module.exports = {
     'gatsby-plugin-image',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sitemap',
-    'gatsby-plugin-mdx',
+    {
+      resolve: 'gatsby-plugin-mdx',
+      options: {
+        extensions: ['.mdx', '.md'],
+        remarkPlugins: [remarkMath],
+        rehypePlugins: [rehypeKatex],
+        gatsbyRemarkPlugins: [],
+      },
+    },
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
+    {
+      resolve: 'gatsby-transformer-yaml-full',
+      options: {
+        plugins: [
+          {
+            resolve: 'gatsby-yaml-full-markdown',
+            options: {
+              plain: true,
+            },
+          },
+          {
+            resolve: 'mdx-yaml-full',
+            options: {
+              plain: true,
+            },
+          },
+        ],
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'content',
+        path: './content/',
+      },
+      __key: 'content',
+    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -32,6 +69,7 @@ module.exports = {
       __key: 'templates',
     },
   ],
+  pathPrefix: '/.dev',
   trailingSlash: 'always',
   developMiddleware: (app) => {
     app.use(

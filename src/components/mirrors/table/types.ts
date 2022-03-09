@@ -31,8 +31,3 @@ export interface IMirrorsData {
   success_at?: Date;
   nxtsync_at?: Date;
 }
-
-export interface IMirrorsYaml {
-  version: number;
-  data: IMirrorsData[];
-}
