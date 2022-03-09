@@ -4,6 +4,6 @@
 
 @layer components {
   .mirrors-desc > highlight {
-    @apply font-medium bg-sky-100;
+    @apply font-medium bg-blue-200;
   }
 }

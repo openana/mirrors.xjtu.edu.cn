@@ -116,7 +116,7 @@ data:
 
   - id: homebrew-bottles
     name: Homebrew Bottles
-    desc: Homebrew is a free and open-source software package management system that simplifies the installation of software on Apple's operating system macOS as well as Linux.
+    desc: <highlight>Homebrew</highlight> is a free and open-source software package management system that simplifies the installation of software on Apple's operating system macOS as well as Linux.
     docs: /docs/homebrew-bottles/
 
   - id: iina
@@ -127,18 +127,18 @@ data:
 
   - id: kali
     name: Kali
-    desc: Kali Linux is a Debian-derived Linux distribution designed for digital forensics and penetration testing. It is maintained and funded by Offensive Security.
+    desc: <highlight>Kali Linux</highlight> is a Debian-derived Linux distribution designed for digital forensics and penetration testing. It is maintained and funded by Offensive Security.
 
   - id: kali-images
     name: Kali Releases
 
   - id: kernel
     name: Kernel
-    desc: The Linux kernel is a free and open-source, monolithic, modular, multitasking, Unix-like operating system kernel. It was conceived and created in 1991 by Linus Torvalds for his i386-based PC, and it was soon adopted as the kernel for the GNU operating system, which was created as a free replacement for UNIX.
+    desc: <highlight>The Linux kernel</highlight> is a free and open-source, monolithic, modular, multitasking, Unix-like operating system kernel. It was conceived and created in 1991 by Linus Torvalds for his i386-based PC, and it was soon adopted as the kernel for the GNU operating system, which was created as a free replacement for UNIX.
 
   - id: kodi
     name: Kodi
-    desc: Kodi is a free and open-source media player software application developed by the Kodi Foundation, a non-profit technology consortium. Kodi is available for multiple operating systems and hardware platforms, with a software 10-foot user interface for use with televisions and remote controls.
+    desc: <highlight>Kodi</highlight> is a free and open-source media player software application developed by the Kodi Foundation, a non-profit technology consortium. Kodi is available for multiple operating systems and hardware platforms, with a software 10-foot user interface for use with televisions and remote controls.
 
   - id: manjaro
     name: Manjaro
@@ -148,39 +148,39 @@ data:
 
   - id: mongodb
     name: MongoDB
-    desc: MongoDB is a source-available cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with optional schemas. MongoDB is developed by MongoDB Inc. and licensed under the Server Side Public License.
+    desc: <highlight>MongoDB</highlight> is a source-available cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with optional schemas. MongoDB is developed by MongoDB Inc. and licensed under the Server Side Public License.
 
   - id: openwrt
     name: OpenWrt
-    desc: The OpenWrt Project is a Linux operating system targeting embedded devices.
+    desc: <highlight>The OpenWrt Project</highlight> is a Linux operating system targeting embedded devices.
 
   - id: pypi
     name: PyPI
-    desc: The Python Package Index (PyPI) is a repository of software for the Python programming language.
+    desc: <highlight>The Python Package Index (PyPI)</highlight> is a repository of software for the Python programming language.
     docs: /docs/pypi/
 
   - id: raspberrypi
     name: Raspberry Pi OS
-    desc: Raspberry Pi OS is a Debian-based operating system for Raspberry Pi. Since 2015, it has been officially provided by the Raspberry Pi Foundation as the primary operating system for the Raspberry Pi family of compact single-board computers.
+    desc: <highlight>Raspberry Pi OS</highlight> is a Debian-based operating system for Raspberry Pi. Since 2015, it has been officially provided by the Raspberry Pi Foundation as the primary operating system for the Raspberry Pi family of compact single-board computers.
 
   - id: raspberrypi-images
     name: Raspberry Pi Releases
 
   - id: raspbian
     name: Raspbian
-    desc: Raspbian is a free operating system based on Debian optimized for the Raspberry Pi hardware. An operating system is the set of basic programs and utilities that make your Raspberry Pi run.
+    desc: <highlight>Raspbian</highlight> is a free operating system based on Debian optimized for the Raspberry Pi hardware. An operating system is the set of basic programs and utilities that make your Raspberry Pi run.
 
   - id: rfc
     name: RFC
-    desc: RFC documents contain technical specifications and organizational notes for the Internet.
+    desc: <highlight>RFC</highlight> documents contain technical specifications and organizational notes for the Internet.
 
   - id: rocky
     name: Rocky Linux
-    desc: Rocky Linux is a Linux distribution developed by Rocky Enterprise Software Foundation. It is intended to be a downstream, complete binary-compatible release using the Red Hat Enterprise Linux (RHEL) operating system source code. The project's aim is to provide a community-supported, production-grade enterprise operating system. Rocky Linux, along with Red Hat Enterprise Linux and SUSE Linux Enterprise, has become popular for enterprise operating system use.
+    desc: <highlight>Rocky Linux</highlight> is a Linux distribution developed by Rocky Enterprise Software Foundation. It is intended to be a downstream, complete binary-compatible release using the Red Hat Enterprise Linux (RHEL) operating system source code. The project's aim is to provide a community-supported, production-grade enterprise operating system. Rocky Linux, along with Red Hat Enterprise Linux and SUSE Linux Enterprise, has become popular for enterprise operating system use.
 
   - id: ros
     name: ROS
-    desc: The Robot Operating System (ROS) is a set of software libraries and tools for building robot applications.
+    desc: <highlight>The Robot Operating System (ROS)</highlight> is a set of software libraries and tools for building robot applications.
 
   - id: ros2-rhel
     name: ROS2 for RHEL
@@ -190,12 +190,12 @@ data:
 
   - id: rpmfusion
     name: RPM Fusion
-    desc: RPM Fusion provides software that the Fedora Project or Red Hat doesn't want to ship.
+    desc: <highlight>RPM Fusion</highlight> provides software that the Fedora Project or Red Hat doesn't want to ship.
     docs: /docs/rpmfusion/
 
   - id: ubuntu
     name: Ubuntu
-    desc: Ubuntu is the modern, open source operating system on Linux for the enterprise server, desktop, cloud, and IoT.
+    desc: <highlight>Ubuntu</highlight> is the modern, open source operating system on Linux for the enterprise server, desktop, cloud, and IoT.
     docs: /docs/ubuntu/
 
   - id: ubuntu-ports
@@ -206,22 +206,22 @@ data:
 
   - id: videolan-ftp
     name: VideoLAN
-    desc: VideoLAN is a non-profit organization which develops software for playing video and other media formats.
+    desc: <highlight>VideoLAN</highlight> is a non-profit organization which develops software for playing video and other media formats.
 
   - id: vim
     name: Vim
-    desc: Vim is a free and open-source, screen-based text editor program for Unix. It is an improved clone of Bill Joy's vi. Vim's author, Bram Moolenaar, derived Vim from a port of the Stevie editor for Amiga and released a version to the public in 1991.
+    desc: <highlight>Vim</highlight> is a free and open-source, screen-based text editor program for Unix. It is an improved clone of Bill Joy's vi. Vim's author, Bram Moolenaar, derived Vim from a port of the Stevie editor for Amiga and released a version to the public in 1991.
 
   - id: virtualbox
     name: VirtualBox
 
   - id: zabbix
     name: Zabbix
-    desc: Zabbix is an open-source monitoring software tool for diverse IT components, including networks, servers, virtual machines and cloud services. Zabbix provides monitoring metrics, among others network utilization, CPU load and disk space consumption.
+    desc: <highlight>Zabbix</highlight> is an open-source monitoring software tool for diverse IT components, including networks, servers, virtual machines and cloud services. Zabbix provides monitoring metrics, among others network utilization, CPU load and disk space consumption.
 
   - name: Homebrew/brew.git
     type: git
-    desc: Homebrew is a free and open-source software package management system that simplifies the installation of software on Apple's operating system, macOS, as well as Linux.
+    desc: <highlight>Homebrew</highlight> is a free and open-source software package management system that simplifies the installation of software on Apple's operating system, macOS, as well as Linux.
     tags:
       - mirrorz
     status: mirrorz
