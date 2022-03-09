@@ -1,5 +1,5 @@
 version: 1
-id: content/mirrors.yaml
+id: mirrors.yaml
 
 data:
   - id: alpine

@@ -25,7 +25,8 @@ const FilesTable: React.FC<PageProps> = ({ location }) => {
     });
   };
 
-  const FETCH_ENDPOINT = '/api' + location.pathname.replace(/^(\/mirrors\.xjtu\.edu\.cn)/, '');
+  const FETCH_ENDPOINT =
+    '/api' + location.pathname.replace(/^(\/mirrors\.xjtu\.edu\.cn)/, '');
   const FETCH_INTERVAL = 3600000; // 60 minutes
 
   React.useEffect(() => {

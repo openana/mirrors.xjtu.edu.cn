@@ -9,14 +9,14 @@ export interface IMdxData {
     excerpt: string;
     tableOfContents: {
       items?: {
-        url: string;
         title: string;
+        url: string;
         items?: {
-          url: string;
           title: string;
+          url: string;
           items?: {
-            url: string;
             title: string;
+            url: string;
           }[];
         }[];
       }[];
