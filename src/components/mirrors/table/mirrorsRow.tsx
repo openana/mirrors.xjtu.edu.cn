@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
-import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import { formatDistanceToNow } from 'date-fns';
 import { zhCN } from 'date-fns/locale';
@@ -61,7 +60,7 @@ const MirrorsTableRow: React.FC<{ item: IMirrorsData }> = ({ item }) => {
           {id ? (
             <Link
               className="transition-colors duration-500 text-sky-600 hover:text-sky-800"
-              to={`/mirrors/${id}/`}
+              to={`/mirrors/${id}/#cache`}
             >
               {name}
             </Link>

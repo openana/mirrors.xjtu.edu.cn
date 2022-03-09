@@ -3,6 +3,17 @@ module.exports = {
   presets: [],
   darkMode: 'media', // or 'class'
   theme: {
+    extend: {
+      typography: () => ({
+        DEFAULT: {
+          css: [
+            {
+              maxWidth: 'none',
+            },
+          ],
+        },
+      }),
+    },
     screens: {
       sm: '640px',
       md: '768px',
@@ -974,5 +985,5 @@ module.exports = {
     'active',
     'disabled',
   ],
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };

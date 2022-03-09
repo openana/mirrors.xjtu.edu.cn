@@ -20,7 +20,20 @@ module.exports = {
         extensions: ['.mdx', '.md'],
         remarkPlugins: [remarkMath],
         rehypePlugins: [rehypeKatex],
-        gatsbyRemarkPlugins: [],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-autolink-headers',
+            options: {
+              icon: '<span>#</span>',
+              className: 'anchor',
+              maintainCase: false,
+              removeAccents: true,
+              isIconAfterHeader: true,
+              elements: ['h1', 'h2', 'h3', 'h4'],
+            },
+          },
+          // 'gatsby-remark-autolink-headers',
+        ],
       },
     },
     'gatsby-plugin-sharp',

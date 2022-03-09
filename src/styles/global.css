@@ -6,4 +6,10 @@
   .mirrors-desc > highlight {
     @apply font-medium bg-blue-200;
   }
+  .prose .anchor {
+    @apply ml-1.5 opacity-0 no-underline transition-colors duration-300 text-sky-300 hover:text-sky-600;
+  }
+  .prose h2:hover .anchor {
+    @apply opacity-100;
+  }
 }

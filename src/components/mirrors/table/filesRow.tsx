@@ -91,7 +91,7 @@ const FilesTableRow: React.FC<{ item: IFilesData }> = ({ item }) => {
           {type === '@back' || type === 'directory' ? (
             <Link
               className="transition-colors duration-500 text-sky-600 hover:text-sky-800"
-              to={`${name}/#page=1`}
+              to={`${name}/#cache`}
             >
               {name}
             </Link>

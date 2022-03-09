@@ -29,6 +29,8 @@
     "gatsby-plugin-react-helmet": "^5.9.0",
     "gatsby-plugin-sharp": "^4.9.0",
     "gatsby-plugin-sitemap": "^5.9.0",
+    "gatsby-remark-autolink-headers": "^5.9.0",
+    "gatsby-remark-remove-cjk-breaks": "^1.2.0",
     "gatsby-source-filesystem": "^4.9.0",
     "gatsby-transformer-sharp": "^4.9.0",
     "gatsby-transformer-yaml-full": "^4.0.4",
@@ -44,7 +46,9 @@
     "tailwindcss": "^3.0.23"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.2",
     "@types/js-yaml": "^4.0.5",
+    "@types/mdx-js__react": "^1.5.5",
     "@types/node": "^17.0.21",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.13",
