@@ -16,26 +16,10 @@ const Markdown: React.FC<{ body: any }> = ({ body }) => {
             }
           />
         ),
-        h1: ({ children, id }, ...props) => (
-          <div {...props} id={id} className="whitespace-pre-wrap -mt-20 pt-20">
-            <h1 children={children} />
-          </div>
-        ),
-        h2: ({ children, id }, ...props) => (
-          <div {...props} id={id} className="-mt-20 pt-20">
-            <h2 children={children} className="whitespace-pre-wrap mt-0" />
-          </div>
-        ),
-        h3: ({ children }, ...props) => (
-          <div {...props} className="-mt-20 pt-20">
-            <h3 children={children} className="whitespace-pre-wrap mt-0" />
-          </div>
-        ),
-        h4: ({ children }, ...props) => (
-          <div {...props} className="whitespace-pre-wrap -mt-20 pt-20">
-            <h4 children={children} />
-          </div>
-        ),
+        h1: (props) => <h1 {...props} className="whitespace-pre-wrap" />,
+        h2: (props) => <h2 {...props} className="whitespace-pre-wrap" />,
+        h3: (props) => <h3 {...props} className="whitespace-pre-wrap" />,
+        h4: (props) => <h4 {...props} className="whitespace-pre-wrap" />,
       }}
     >
       <MDXRenderer>{body}</MDXRenderer>

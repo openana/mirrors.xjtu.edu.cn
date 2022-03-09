@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'gatsby';
+import { Helmet } from 'react-helmet';
 
 import Header from './header';
 import Footer from './footer';
@@ -12,6 +12,9 @@ interface Props {
 const Layout = ({ children, location }: Props): JSX.Element => {
   return (
     <>
+      <Helmet>
+        <html lang="zh-Hans" className="scroll-smooth" />
+      </Helmet>
       <Header location={location} />
       {children}
       <Footer location={location} />

@@ -9,6 +9,9 @@ module.exports = {
           css: [
             {
               maxWidth: 'none',
+              'h2, h3, h4': {
+                'scroll-margin-top': '5rem',
+              },
             },
           ],
         },

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
+import { BsArrowBarUp } from 'react-icons/bs';
+
 import { Markdown } from '../components/markdown';
 import { IMdxData } from '../components/markdown/types';
 
@@ -13,6 +15,7 @@ const AboutPage = () => {
           description
         }
         body
+        slug
         excerpt(pruneLength: 100, truncate: true)
         tableOfContents
       }
@@ -38,6 +41,23 @@ const AboutPage = () => {
               </div>
               <div className="prose prose-sky mt-8">
                 <Markdown body={data.mdx.body} />
+              </div>
+              <div className="text-sm leading-6 mt-12">
+                <div className="flex justify-between text-slate-500">
+                  <div>
+                    <a className="hover:text-slate-900" href="#top">
+                      回到页面顶端 <BsArrowBarUp className="inline" />
+                    </a>
+                  </div>
+                  <div>
+                    <a
+                      className="hover:text-slate-900"
+                      href={`https://github.com/openana/mirrors.xjtu.edu.cn/edit/master/content/${data.mdx.slug}.mdx`}
+                    >
+                      在 GitHub 上编辑此页
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="col-span-1">

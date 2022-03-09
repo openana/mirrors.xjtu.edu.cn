@@ -5,6 +5,7 @@ export interface IMdxData {
       description: string;
     };
     body: any;
+    slug: string;
     excerpt: string;
     tableOfContents: {
       items?: {
