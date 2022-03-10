@@ -1,11 +1,13 @@
 import * as React from 'react';
+import path from 'path';
 
 import { BsCloudFill, BsSortAlphaDown } from 'react-icons/bs';
 
 import { IMirrors, IMirrorsData } from './types';
 import MirrorsTableRow from './mirrorsRow';
 
-const MirrorsTable: React.FC<{ mirrors: IMirrors; setMirrors: any }> = ({
+const MirrorsTable: React.FC<{ pathname: string, mirrors: IMirrors; setMirrors: any }> = ({
+  pathname,
   mirrors,
   setMirrors,
 }) => {
@@ -38,7 +40,7 @@ const MirrorsTable: React.FC<{ mirrors: IMirrors; setMirrors: any }> = ({
     });
   };
 
-  const FETCH_ENDPOINT = '/api/mirrors/';
+  const FETCH_ENDPOINT = (process.env.GATSBY_API_ENDPOINT || '/api') + pathname;
   const FETCH_INTERVAL = 300000; // 5 minutes
 
   React.useEffect(() => {

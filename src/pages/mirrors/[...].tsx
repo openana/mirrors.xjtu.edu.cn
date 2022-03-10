@@ -7,6 +7,38 @@ import { FilesTable, MirrorsTable } from '../../components/mirrors/table';
 import { IMirrors } from '../../components/mirrors/table/types';
 
 const MirrorsPage: React.FC<PageProps> = ({ location }, props) => {
+  const GATSBY_CONFIG_PATH_PREFIX =
+    process.env.GATSBY_CONFIG_PATH_PREFIX !== '/'
+      ? process.env.GATSBY_CONFIG_PATH_PREFIX || ''
+      : '';
+
+  let pathname = location.pathname;
+  if (pathname.startsWith(GATSBY_CONFIG_PATH_PREFIX)) {
+    pathname = pathname.slice(GATSBY_CONFIG_PATH_PREFIX.length);
+  }
+
+  const isBrowser = typeof window !== `undefined`;
+  if (isBrowser) {
+    const bLocation = window.location;
+    let bPathname = bLocation.pathname;
+    const bHasPathPerfix = bPathname.startsWith(GATSBY_CONFIG_PATH_PREFIX);
+    if (bHasPathPerfix) {
+      // {GATSBY_CONFIG_PATH_PREFIX}/mirrors/[...]/#/archlinux/
+      bPathname = bPathname.slice(GATSBY_CONFIG_PATH_PREFIX.length);
+    }
+    // /mirrors/[...]/#/archlinux/
+    if (bPathname === '/mirrors/[...]/' && bLocation.hash.startsWith('#/')) {
+      // /mirrors/archlinux/
+      pathname = '/mirrors' + bLocation.hash.slice(1);
+      bPathname = '/mirrors' + bLocation.hash.slice(1);
+      if (bHasPathPerfix) {
+        // {GATSBY_CONFIG_PATH_PREFIX}/mirrors/archlinux/
+        bPathname = GATSBY_CONFIG_PATH_PREFIX + bPathname;
+      }
+      window.history.pushState(null, '', bPathname);
+    }
+  }
+
   const data = useStaticQuery(graphql`
     query mirrorsYamlQuery {
       contentYaml(yamlId: { base: { eq: "mirrors.yaml" } }) {
@@ -42,11 +74,14 @@ const MirrorsPage: React.FC<PageProps> = ({ location }, props) => {
             </div>
           </div>
           <div className="mb-4">
-            {location.pathname.replace(/^(\/mirrors\.xjtu\.edu\.cn)/, '') ===
-            '/mirrors/' ? (
-              <MirrorsTable mirrors={mirrors} setMirrors={setMirrors} />
+            {pathname === '/mirrors/' ? (
+              <MirrorsTable
+                pathname={pathname}
+                mirrors={mirrors}
+                setMirrors={setMirrors}
+              />
             ) : (
-              <FilesTable location={location} {...props} />
+              <FilesTable pathname={pathname} />
             )}
           </div>
         </div>

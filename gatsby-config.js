@@ -1,3 +1,9 @@
+require('dotenv').config({
+  path:
+    process.env.NODE_ENV_FILE ||
+    (process.env.NODE_ENV === 'development' ? '.env.example' : '.env'),
+});
+
 const remarkMath = import('remark-math');
 const rehypeKatex = import('rehype-katex');
 const { createProxyMiddleware } = require('http-proxy-middleware');
@@ -82,7 +88,7 @@ module.exports = {
       __key: 'templates',
     },
   ],
-  pathPrefix: '/mirrors.xjtu.edu.cn',
+  pathPrefix: process.env.GATSBY_CONFIG_PATH_PREFIX,
   trailingSlash: 'always',
   developMiddleware: (app) => {
     app.use(

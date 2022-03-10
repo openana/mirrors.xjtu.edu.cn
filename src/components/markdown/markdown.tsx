@@ -22,8 +22,8 @@ const Markdown: React.FC<{ body: any }> = ({ body }) => {
                   ? props.className
                   : 'group underline-offset-2 transition-colors duration-300 decoration-sky-300 hover:decoration-sky-700'
               }
-              rel={isExternal && 'noopener noreferrer nofollow'}
-              target={isExternal && '_blank'}
+              rel={isExternal ? 'noopener noreferrer nofollow' : ''}
+              target={isExternal ? '_blank' : ''}
             >
               {props.children}
               {isExternal && (

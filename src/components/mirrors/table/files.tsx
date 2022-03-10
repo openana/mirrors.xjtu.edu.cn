@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { PageProps } from 'gatsby';
 
 import { BsFolderFill, BsSortAlphaDown } from 'react-icons/bs';
 
 import { IFiles, IFilesData } from './types';
 import FilesTableRow from './filesRow';
 
-const FilesTable: React.FC<PageProps> = ({ location }) => {
+const FilesTable: React.FC<{ pathname: string }> = ({ pathname }) => {
   const [files, setFiles] = React.useState<IFiles>({
     data: [],
     loading: false,
@@ -25,8 +24,7 @@ const FilesTable: React.FC<PageProps> = ({ location }) => {
     });
   };
 
-  const FETCH_ENDPOINT =
-    '/api' + location.pathname.replace(/^(\/mirrors\.xjtu\.edu\.cn)/, '');
+  const FETCH_ENDPOINT = (process.env.GATSBY_API_ENDPOINT || '/api') + pathname;
   const FETCH_INTERVAL = 3600000; // 60 minutes
 
   React.useEffect(() => {
@@ -66,7 +64,7 @@ const FilesTable: React.FC<PageProps> = ({ location }) => {
           error: err,
         });
       });
-  }, [location.pathname]);
+  }, [pathname]);
 
   return (
     <table className="flex flex-col text-sm">
