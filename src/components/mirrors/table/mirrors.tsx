@@ -6,11 +6,11 @@ import { BsCloudFill, BsSortAlphaDown } from 'react-icons/bs';
 import { IMirrors, IMirrorsData } from './types';
 import MirrorsTableRow from './mirrorsRow';
 
-const MirrorsTable: React.FC<{ pathname: string, mirrors: IMirrors; setMirrors: any }> = ({
-  pathname,
-  mirrors,
-  setMirrors,
-}) => {
+const MirrorsTable: React.FC<{
+  pathname: string;
+  mirrors: IMirrors;
+  setMirrors: any;
+}> = ({ pathname, mirrors, setMirrors }) => {
   const [count, setCount] = React.useState(true);
 
   const setMirrorsData = (data: any[]) => {

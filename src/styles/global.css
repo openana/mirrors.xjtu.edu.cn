@@ -17,8 +17,21 @@
   .prose h2:hover .anchor {
     @apply opacity-100;
   }
+  .prose h3:hover .anchor {
+    @apply opacity-100;
+  }
+  .prose h4:hover .anchor {
+    @apply opacity-100;
+  }
+  .prose code {
+    @apply after:content-[''] before:content-[''] px-1 py-0.5 rounded-sm bg-sky-100 text-sky-700;
+  }
 
   .app-footer a.external-link {
-    @apply font-medium underline underline-offset-2 transition-colors duration-300 decoration-gray-300 hover:text-white hover:decoration-white;
+    @apply font-medium transition-colors duration-300 border-b border-b-gray-300 hover:text-white hover:border-b-2 hover:border-b-white;
   }
+}
+
+.prism-code > .token-line:last-child {
+  display: none;
 }

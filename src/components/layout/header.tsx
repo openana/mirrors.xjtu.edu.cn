@@ -39,7 +39,7 @@ const Header = ({ location }: Props): JSX.Element => {
                     },
                     {
                       partiallyActive: true,
-                      to: '/docs/',
+                      to: '/docs/getting-started/introduction/',
                       title: '文档',
                     },
                     {

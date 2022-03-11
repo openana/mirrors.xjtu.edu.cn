@@ -64,17 +64,6 @@ const AboutPage = () => {
               </div>
               <div className="text-sm leading-6 mt-12">
                 <div className="flex text-slate-500">
-                  <div>
-                    <ExternalLink
-                      href={`https://github.com/openana/mirrors.xjtu.edu.cn/edit/main/content/${data.mdx.slug}.mdx`}
-                      title={
-                        <>
-                          在 GitHub 上编辑此页{' '}
-                          <BsPencilSquare className="inline h-4 mb-0.5" />
-                        </>
-                      }
-                    />
-                  </div>
                   <div className="ml-auto">
                     <a
                       className="transition-colors duration-300 hover:text-slate-900"

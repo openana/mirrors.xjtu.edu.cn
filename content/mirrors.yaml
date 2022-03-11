@@ -9,17 +9,17 @@ data:
   - id: anaconda
     name: Anaconda
     desc: <highlight>Anaconda</highlight> is a distribution of the Python and R programming languages for scientific computing (data science, machine learning applications, large-scale data processing, predictive analytics, etc.), that aims to simplify package management and deployment. The distribution includes data-science packages suitable for Windows, Linux, and macOS.
-    docs: /docs/anaconda/
+    docs: /docs/mirrors/anaconda/
 
   - id: archlinux
     name: Arch Linux
     desc: <highlight>Arch Linux</highlight> (/ɑːrtʃ/) is a Linux distribution created for computers with x86-64 processors. Arch Linux adheres to the KISS principle ("Keep It Simple, Stupid"). The project attempts to have minimal distribution-specific changes, and therefore minimal breakage with updates, and be pragmatic over ideological design choices and focus on customizability rather than user-friendliness.
-    docs: /docs/archlinux/
+    docs: /docs/mirrors/archlinux/
 
   - id: archlinuxcn
     name: Arch Linux 中文社区仓库
     desc: <highlight>Arch Linux 中文社区仓库</highlight>是由 Arch Linux 中文社区驱动的非官方软件仓库，包含许多官方仓库未提供的额外的软件包，以及已有软件的 git 版本等变种。一部分软件包的打包脚本来源于 AUR，但也有许多包与 AUR 不一样。
-    docs: /docs/archlinuxcn/
+    docs: /docs/mirrors/archlinux/#Arch%20Linux%20中文社区仓库镜像源
 
   - id: artixlinux
     name: Artix Linux
@@ -28,7 +28,7 @@ data:
   - id: centos
     name: CentOS
     desc: <highlight>CentOS</highlight> (/ˈsɛntɒs/, from Community Enterprise Operating System; also known as CentOS Linux) is a Linux distribution that provides a free and open-source community-supported computing platform, functionally compatible with its upstream source, Red Hat Enterprise Linux (RHEL). While the distribution was discontinued at the end of 2021, development of CentOS Stream, its midstream variant, continues.
-    docs: /docs/centos/
+    docs: /docs/mirrors/centos/
     tags:
       - deprecated
 
@@ -47,7 +47,7 @@ data:
   - id: ceph
     name: Ceph
     desc: <highlight>Ceph</highlight> pronounced /ˈsɛf/) is an open-source software-defined storage platform that implements object storage on a single distributed computer cluster and provides 3-in-1 interfaces for object-, block- and file-level storage. Ceph aims primarily for completely distributed operation without a single point of failure, scalability to the exabyte level, and to be freely available.
-    docs: /docs/ceph/
+    docs: /docs/mirrors/ceph/
 
   - id: cpan
     name: CPAN
@@ -64,7 +64,7 @@ data:
   - id: ctex
     name: CTeX
     desc: <highlight>CTeX</highlight> 中文套装是基于 Windows 下的 MiKTeX 系统，集成了编辑器 WinEdt 和 PostScript 处理软件 Ghostscript 和 GSview 等主要工具。CTeX 中文套装在 MiKTeX 的基础上增加了对中文的完整支持。CTeX 中文套装支持 CJK, xeCJK, CCT, TY 等多种中文 TeX 处理方式。
-    docs: /docs/ctex/
+    docs: /docs/mirrors/ctex/
     tags:
       - deprecated
 
@@ -75,7 +75,7 @@ data:
   - id: debian
     name: Debian
     desc: <highlight>Debian</highlight> is an operating system and a distribution of Free Software. It is maintained and updated through the work of many users who volunteer their time and effort.
-    docs: /docs/debian/
+    docs: /docs/mirrors/debian/
 
   - id: debian-cd
     name: Debian Releases
@@ -96,12 +96,12 @@ data:
 
   - id: epel
     name: EPEL
-    docs: /docs/epel/
+    docs: /docs/mirrors/epel/
 
   - id: fedora
     name: Fedora
     desc: <highlight>Fedora</highlight> creates an innovative, free, and open source platform for hardware, clouds, and containers that enables software developers and community members to build tailored solutions for their users.
-    docs: /docs/fedora/
+    docs: /docs/mirrors/fedora/
 
   - id: fedora-secondary
     name: Fedora Secondary
@@ -117,12 +117,12 @@ data:
   - id: homebrew-bottles
     name: Homebrew Bottles
     desc: <highlight>Homebrew</highlight> is a free and open-source software package management system that simplifies the installation of software on Apple's operating system macOS as well as Linux.
-    docs: /docs/homebrew-bottles/
+    docs: /docs/mirrors/homebrew-bottles/
 
   - id: iina
     name: IINA
     desc: <highlight>IINA</highlight> is born to be a modern macOS application, from its framework to the user interface. It adopts the post-Yosemite design language of macOS and keeps up the pace of new technologies like Force Touch, Touch Bar, and Picture-in-Picture.
-    docs: /docs/iina/
+    docs: /docs/mirrors/iina/
 
   - id: jenkins
     name: Jenkins
@@ -159,7 +159,7 @@ data:
   - id: pypi
     name: PyPI
     desc: <highlight>The Python Package Index (PyPI)</highlight> is a repository of software for the Python programming language.
-    docs: /docs/pypi/
+    docs: /docs/mirrors/pypi/
 
   - id: raspberrypi
     name: Raspberry Pi OS
@@ -193,12 +193,12 @@ data:
   - id: rpmfusion
     name: RPM Fusion
     desc: <highlight>RPM Fusion</highlight> provides software that the Fedora Project or Red Hat doesn't want to ship.
-    docs: /docs/rpmfusion/
+    docs: /docs/mirrors/rpmfusion/
 
   - id: ubuntu
     name: Ubuntu
     desc: <highlight>Ubuntu</highlight> is the modern, open source operating system on Linux for the enterprise server, desktop, cloud, and IoT.
-    docs: /docs/ubuntu/
+    docs: /docs/mirrors/ubuntu/
 
   - id: ubuntu-ports
     name: Ubuntu Ports

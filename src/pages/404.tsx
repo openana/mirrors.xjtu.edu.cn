@@ -7,6 +7,7 @@ const NotFoundPage = () => {
       ? process.env.GATSBY_CONFIG_PATH_PREFIX || ''
       : '';
 
+  // NOTE: this is a hack to adapt the pathname to the GitHub Pages
   const isBrowser = typeof window !== `undefined`;
   if (isBrowser) {
     const location = window.location;
