@@ -84,8 +84,8 @@ const MirrorsTableRow: React.FC<{ item: IMirrorsData }> = ({ item }) => {
             )}
           </p>
         </div>
-        <div className="flex-auto overflow-hidden">
-          <p className="truncate group-hover:whitespace-normal">
+        <div className="flex-auto relative overflow-hidden">
+          <p className="truncate w-full">
             {tags &&
               tags.map((tag, key) => (
                 <span
@@ -115,7 +115,7 @@ const MirrorsTableRow: React.FC<{ item: IMirrorsData }> = ({ item }) => {
       </td>
       <td className="hidden py-0 space-x-2 group-hover:flex">
         <div className="ml-6">
-          {id && (
+          {/* {id && (
             <div>
               <code className="select-all text-xs rounded-md">
                 http://mirrors.xjtu.edu.cn/{id}/
@@ -125,7 +125,7 @@ const MirrorsTableRow: React.FC<{ item: IMirrorsData }> = ({ item }) => {
                 https://mirrors.xjtu.edu.cn/{id}/
               </code>
             </div>
-          )}
+          )} */}
         </div>
       </td>
     </tr>

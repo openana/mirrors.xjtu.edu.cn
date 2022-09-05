@@ -119,6 +119,13 @@ data:
     desc: <highlight>Homebrew</highlight> is a free and open-source software package management system that simplifies the installation of software on Apple's operating system macOS as well as Linux.
     docs: /docs/mirrors/homebrew-bottles/
 
+  - name: Homebrew/brew.git
+    type: git
+    desc: <highlight>Homebrew</highlight> is a free and open-source software package management system that simplifies the installation of software on Apple's operating system, macOS, as well as Linux.
+    tags:
+      - mirrorz
+    status: mirrorz
+
   - id: iina
     name: IINA
     desc: <highlight>IINA</highlight> is born to be a modern macOS application, from its framework to the user interface. It adopts the post-Yosemite design language of macOS and keeps up the pace of new technologies like Force Touch, Touch Bar, and Picture-in-Picture.
@@ -202,9 +209,11 @@ data:
 
   - id: ubuntu-ports
     name: Ubuntu Ports
+    docs: /docs/mirrors/ubuntu/#Ubuntu%20Ports镜像源
 
   - id: ubuntu-releases
     name: Ubuntu Releases
+    docs: /docs/mirrors/ubuntu/#Ubuntu%20Releases镜像源
 
   - id: videolan-ftp
     name: VideoLAN
@@ -220,10 +229,3 @@ data:
   - id: zabbix
     name: Zabbix
     desc: <highlight>Zabbix</highlight> is an open-source monitoring software tool for diverse IT components, including networks, servers, virtual machines and cloud services. Zabbix provides monitoring metrics, among others network utilization, CPU load and disk space consumption.
-
-  - name: Homebrew/brew.git
-    type: git
-    desc: <highlight>Homebrew</highlight> is a free and open-source software package management system that simplifies the installation of software on Apple's operating system, macOS, as well as Linux.
-    tags:
-      - mirrorz
-    status: mirrorz
