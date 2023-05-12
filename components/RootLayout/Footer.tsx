@@ -1,43 +1,47 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 const fullYear = new Date().getFullYear()
 
 const footerLinks = [
-  { title: '关于', href: '#' },
-  { title: '服务状态', href: '#' },
-  { title: '隐私政策', href: '#' },
-  { title: '使用条款', href: '#' },
+  { title: '关于', href: '/about/' },
+  { title: '服务状态', href: '/status/' },
+  { title: '隐私政策', href: '/docs/private-policy/' },
+  { title: '使用条款', href: '/docs/terms-of-service/' },
 ]
 
-const FooterLink = ({ href, title }: { href: string; title: string }) => (
-  <a
-    className="hover:text-neutral-700 hover:underline"
-    href={href}
-    {...(href.startsWith('//') && {
-      target: '_blank',
-      rel: 'noopener noreferrer',
-    })}
-  >
-    {title}
-  </a>
-)
+const FooterLink = ({ href, title }: { href: string; title: string }) =>
+  href.startsWith('//') ? (
+    <a
+      className="hover:text-neutral-700 hover:underline"
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {title}
+    </a>
+  ) : (
+    <Link className="hover:text-neutral-700 hover:underline" href={href}>
+      {title}
+    </Link>
+  )
 
 export default function Footer({}: {}) {
   return (
     <div className="bg-white border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl mx-auto flex flex-col-reverse">
-        <div className="flex flex-wrap items-center justify-between p-4 text-xs text-neutral-600">
-          <div className="h-6">
-            Copyright © {fullYear}{' '}
-            <FooterLink href="//xjtuana.com" title="西交网管会" />.
-            保留所有权利。
-          </div>
-          <div className="h-6">
+        <div className="flex flex-row-reverse items-center justify-end flex-wrap p-4 text-xs text-neutral-600">
+          <div className="h-6 mt-4">
             {footerLinks.map((link, key) => (
               <div key={key} className="pr-6 pb-2 inline-block ">
                 <FooterLink href={link.href} title={link.title} />
               </div>
             ))}
+          </div>
+          <div className="mr-auto h-6 mt-4">
+            Copyright © {fullYear}{' '}
+            <FooterLink href="//xjtuana.com" title="西交网管会" />.
+            保留所有权利。
           </div>
         </div>
         <div className="flex flex-wrap items-center justify-between p-4 text-sm text-neutral-500">
@@ -74,7 +78,7 @@ export default function Footer({}: {}) {
               获取。根据相关法律法规，本站部分服务仅对西安交通大学校内用户提供。
             </p>
           </div>
-          <div className="px-6">
+          <div className="ml-auto px-6 mt-6">
             <Image
               src="/images/xjtuana-logo.svg"
               alt="西交网管会 Logo"

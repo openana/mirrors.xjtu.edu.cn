@@ -1,20 +1,24 @@
+'use client'
+
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const headerLinks = [
   { name: '主页', href: '/' },
-  { name: '文档', href: '#' },
-  { name: '更多服务', href: '#' },
-  { name: '新闻公告', href: '#' },
-  { name: '关于', href: '#' },
+  { name: '文档', href: '/docs/' },
+  { name: '更多服务', href: '/services/' },
+  { name: '新闻公告', href: '/news/' },
+  { name: '关于', href: '/about/' },
 ]
 
 export default function Header({}: {}) {
+  const pathname = usePathname()
   return (
     <div className="bg-white border-b border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="/" className="flex items-center">
+        <a href="/" className="flex items-center h-10">
           <span className="self-center text-2xl font-medium whitespace-nowrap text-sky-700 dark:text-white">
-            西安交通大学软件镜像站
+            西安交通大学软件镜像站 {pathname}
           </span>
         </a>
         <button
@@ -45,7 +49,8 @@ export default function Header({}: {}) {
               <li key={key}>
                 <Link
                   className={
-                    link.href == '/'
+                    (link.href === '/' && pathname === link.href) ||
+                    (link.href !== '/' && pathname.startsWith(link.href))
                       ? 'block py-2 pl-3 pr-4 rounded md:p-0 dark:text-white text-white bg-sky-700 md:bg-transparent md:text-sky-700 md:dark:text-sky-500'
                       : 'block py-2 pl-3 pr-4 rounded md:p-0 dark:text-white text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-sky-700 md:dark:hover:text-sky-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
                   }

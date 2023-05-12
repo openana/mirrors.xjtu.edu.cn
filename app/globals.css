@@ -2,17 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* html,
+body {
+  min-width: 380px;
+} */
+
 @keyframes fade-in {
-    0% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 0.8;
-    }
-    100% {
-        opacity: 1;
-    }
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 .animate-fade-in {
-    animation: fade-in 0.5s ease-in-out;
+  animation: fade-in 0.5s ease-in-out;
 }
