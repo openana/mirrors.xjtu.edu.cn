@@ -57,7 +57,7 @@ export default function PostPage({ params }: PostPageProps) {
 
   return (
     <div className="bg-white dark:bg-gray-900">
-      <div className="max-w-screen-xl w-full flex mx-auto p-4 space-x-6">
+      <div className="max-w-screen-xl w-full flex flex-col mx-auto p-4 space-y-6">
         <PostIntro title={post.title} date={post.date} tags={post.tags} />
         <MDXContent code={post.body.code} />
       </div>

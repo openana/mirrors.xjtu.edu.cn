@@ -62,20 +62,20 @@ export default function Footer({}: {}) {
             <p className="mb-2">
               除特殊注明外，本站源码在{' '}
               <FooterLink
-                href="//github.com/openana/mirrors.xjtu.edu.cn/blob/main/LICENSE"
+                href="//github.com/openana/app-mirrors/blob/main/LICENSE"
                 title="MIT"
               />{' '}
               许可下发布，本站创作内容均在{' '}
               <FooterLink
-                href="//creativecommons.org/licenses/by-nc/4.0/legalcode"
-                title="CC BY-NC 4.0"
+                href="//creativecommons.org/licenses/by-nc-sa/4.0/legalcode"
+                title="CC BY-NC-SA 4.0"
               />{' '}
               许可下发布，相关源码及创作内容可在{' '}
               <FooterLink
-                href="//github.com/openana/mirrors.xjtu.edu.cn"
+                href="//github.com/openana/app-mirrors"
                 title="GitHub"
               />{' '}
-              获取。根据相关法律法规，本站部分服务仅对西安交通大学校内用户提供。
+              获取。根据相关法律法规以及合规性要求，本站部分服务仅对西安交通大学校内用户提供。
             </p>
           </div>
           <div className="ml-auto px-6 mt-6">

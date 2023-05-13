@@ -18,7 +18,7 @@ export default function Header({}: {}) {
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="/" className="flex items-center h-10">
           <span className="self-center text-2xl font-medium whitespace-nowrap text-sky-700 dark:text-white">
-            西安交通大学软件镜像站 {pathname}
+            西安交通大学软件镜像站
           </span>
         </a>
         <button

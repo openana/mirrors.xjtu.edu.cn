@@ -50,9 +50,41 @@ export default function MirrorsLayout({
   return (
     <div className="py-6 basis-3/4">
       <div className="flex items-center justify-between pb-4 overflow-hidden">
-        <div>
+        <div className="flex items-center">
           <div className="font-medium text-lg">
             <CloudIcon className="inline -mt-0.5" /> 镜像列表
+          </div>
+          <div className="flex ml-10 text-xs">
+            <span>当前状态：</span>
+            <span className="flex items-center text-green-500">
+              正常运行
+              <span className="relative flex h-2 w-2 ml-1">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+              </span>
+            </span>
+            <span className="px-2">/</span>
+            <span className="flex items-center text-yellow-500">
+              服务降级
+              <span className="relative flex h-2 w-2 ml-1">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
+              </span>
+            </span>
+            <span className="px-2">/</span>
+            <span className="flex items-center text-red-500">
+              不可用
+              <span className="relative flex h-2 w-2 ml-1">
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+              </span>
+            </span>
+            <span className="px-2">/</span>
+            <span className="flex items-center text-gray-500">
+              未知
+              <span className="relative flex h-2 w-2 ml-1">
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-gray-500"></span>
+              </span>
+            </span>
           </div>
         </div>
         <label htmlFor="table-filter" className="sr-only">
@@ -60,12 +92,21 @@ export default function MirrorsLayout({
         </label>
         <div className="relative">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <SearchIcon className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+            <SearchIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
           </div>
+          <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-xs font-semibold space-x-1">
+            <kbd className="px-1 py-0.5 text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500">
+              Ctrl
+            </kbd>
+            <span>+</span>
+            <kbd className="px-1 py-0.5 text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500">
+              F
+            </kbd>
+          </span>
           <input
             type="text"
             id="table-filter"
-            className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-sky-500 focus:border-sky-500"
+            className="block p-2 pl-8 pr-24 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-sky-500 focus:border-sky-500"
             placeholder="查找镜像"
           />
         </div>

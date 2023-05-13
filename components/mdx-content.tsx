@@ -11,5 +11,9 @@ type MDXContentProps = {
 export function MDXContent({ code }: MDXContentProps) {
   const Component = useMDXComponent(code);
 
-  return <Component components={MDXComponents} />;
+  return (
+    <div>
+      <Component components={MDXComponents} />
+    </div>
+  );
 }

@@ -1,4 +1,5 @@
-import { compareDesc } from 'date-fns';
+import { compareDesc, formatDistanceToNow } from 'date-fns';
+import { zhCN } from 'date-fns/locale';
 import {
   NewspaperIcon,
   DownloadCloudIcon,
@@ -6,6 +7,15 @@ import {
   Link2Icon,
 } from 'lucide-react';
 import { NewsPost } from '@/.contentlayer/generated';
+
+const _formatDistanceToNow = (date: Date, options?: any) => {
+  const result = formatDistanceToNow(new Date(date), {
+    locale: zhCN,
+    ...options,
+  });
+  if (!result.endsWith('前')) return result + '后';
+  return result;
+};
 
 export default function MirrorsAsideLayout({
   allNewsPosts,
@@ -26,7 +36,12 @@ export default function MirrorsAsideLayout({
           <div className="pt-2">
             <ul>
               {latestNewsPosts.map((post) => (
-                <li key={post.slug}>{post.title}</li>
+                <li key={post.slug}>
+                  {post.title}{' '}
+                  <span className="text-xs text-gray-400">
+                    - 发布于 {_formatDistanceToNow(new Date(post.date))}
+                  </span>
+                </li>
               ))}
             </ul>
           </div>
