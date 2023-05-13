@@ -49,8 +49,10 @@ export default function Header({}: {}) {
               <li key={key}>
                 <Link
                   className={
-                    (link.activeSelector === '/' && pathname === link.activeSelector) ||
-                    (link.activeSelector !== '/' && pathname.startsWith(link.activeSelector))
+                    (link.activeSelector === '/' &&
+                      pathname === link.activeSelector) ||
+                    (link.activeSelector !== '/' &&
+                      pathname.startsWith(link.activeSelector))
                       ? 'block py-2 pl-3 pr-4 rounded md:p-0 dark:text-white text-white bg-sky-700 md:bg-transparent md:text-sky-700 md:dark:text-sky-500'
                       : 'block py-2 pl-3 pr-4 rounded md:p-0 dark:text-white text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-sky-700 md:dark:hover:text-sky-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
                   }
