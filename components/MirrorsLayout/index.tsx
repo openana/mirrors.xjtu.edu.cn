@@ -116,16 +116,16 @@ export default function MirrorsLayout({
                   sensitivity: 'base',
                 }),
               )
-              .sort((a, b) => {
-                if (a.status === 'git' && b.status !== 'git') return 1
-                if (a.status !== 'git' && b.status === 'git') return -1
-                return 0
-              })
-              .sort((a, b) => {
-                if (a.status === 'proxy' && b.status !== 'proxy') return 1
-                if (a.status !== 'proxy' && b.status === 'proxy') return -1
-                return 0
-              })
+              // .sort((a, b) => {
+              //   if (a.status === 'git' && b.status !== 'git') return 1
+              //   if (a.status !== 'git' && b.status === 'git') return -1
+              //   return 0
+              // })
+              // .sort((a, b) => {
+              //   if (a.status === 'proxy' && b.status !== 'proxy') return 1
+              //   if (a.status !== 'proxy' && b.status === 'proxy') return -1
+              //   return 0
+              // })
               .map((mirror, key) => (
                 <tr
                   key={key}

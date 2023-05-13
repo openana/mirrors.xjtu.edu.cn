@@ -1,4 +1,7 @@
+.contentlayer
+.DS_Store
 /public/api
+next-env.d.ts
 
 # Created by https://www.toptal.com/developers/gitignore/api/go,node,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=go,node,visualstudiocode
