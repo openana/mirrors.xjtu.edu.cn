@@ -1,14 +1,15 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
+import { allNewsPosts } from 'contentlayer/generated';
 
-import MirrorsLayout from '@/components/MirrorsLayout'
-import MirrorsAsideLayout from '@/components/MirrorsAsideLayout'
+import MirrorsLayout from '@/components/MirrorsLayout';
+import MirrorsAsideLayout from '@/components/MirrorsAsideLayout';
 
 function Mirrors() {
-  const [mirrors, setMirrors] = useState([])
-  const [counter, setCounter] = useState(true)
-  const [isLoading, setLoading] = useState(true)
+  const [mirrors, setMirrors] = useState([]);
+  const [counter, setCounter] = useState(true);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('/api/mirrors.json')
@@ -43,21 +44,21 @@ function Mirrors() {
           name: 'pypi',
           status: 'proxy',
           last_update_ts: -1,
-        })
-        setMirrors(data)
-        setLoading(false)
-      })
+        });
+        setMirrors(data);
+        setLoading(false);
+      });
     const interval = setInterval(() => {
-      setCounter(!counter)
-    }, 300000)
-    return () => clearInterval(interval)
-  }, [counter])
+      setCounter(!counter);
+    }, 300000);
+    return () => clearInterval(interval);
+  }, [counter]);
 
-  return <MirrorsLayout isLoading={isLoading} mirrors={mirrors} />
+  return <MirrorsLayout isLoading={isLoading} mirrors={mirrors} />;
 }
 
 function MirrorsAside() {
-  return <MirrorsAsideLayout />
+  return <MirrorsAsideLayout allNewsPosts={allNewsPosts} />;
 }
 
 export default function Page() {
@@ -68,5 +69,5 @@ export default function Page() {
         <MirrorsAside />
       </div>
     </div>
-  )
+  );
 }

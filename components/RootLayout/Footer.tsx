@@ -1,14 +1,14 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from 'next/image';
+import Link from 'next/link';
 
-const fullYear = new Date().getFullYear()
+const fullYear = new Date().getFullYear();
 
 const footerLinks = [
   { title: '关于', href: '/about/' },
   { title: '服务状态', href: '/status/' },
   { title: '隐私政策', href: '/docs/private-policy/' },
   { title: '使用条款', href: '/docs/terms-of-service/' },
-]
+];
 
 const FooterLink = ({ href, title }: { href: string; title: string }) =>
   href.startsWith('//') ? (
@@ -24,7 +24,7 @@ const FooterLink = ({ href, title }: { href: string; title: string }) =>
     <Link className="hover:text-neutral-700 hover:underline" href={href}>
       {title}
     </Link>
-  )
+  );
 
 export default function Footer({}: {}) {
   return (
@@ -89,5 +89,5 @@ export default function Footer({}: {}) {
         </div>
       </div>
     </div>
-  )
+  );
 }

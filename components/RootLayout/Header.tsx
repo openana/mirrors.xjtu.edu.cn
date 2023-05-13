@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const headerLinks = [
   { name: '主页', href: '/' },
@@ -9,10 +9,10 @@ const headerLinks = [
   { name: '更多服务', href: '/services/' },
   { name: '新闻公告', href: '/news/' },
   { name: '关于', href: '/about/' },
-]
+];
 
 export default function Header({}: {}) {
-  const pathname = usePathname()
+  const pathname = usePathname();
   return (
     <div className="bg-white border-b border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -64,5 +64,5 @@ export default function Header({}: {}) {
         </div>
       </div>
     </div>
-  )
+  );
 }

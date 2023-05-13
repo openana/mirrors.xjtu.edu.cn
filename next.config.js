@@ -10,7 +10,7 @@ const nextConfig = {
     appDir: true,
     mdxRs: true,
   },
-}
+};
 
-const withMDX = require('@next/mdx')()
-module.exports = withMDX(nextConfig)
+const { withContentlayer } = require('next-contentlayer');
+module.exports = withContentlayer(nextConfig);

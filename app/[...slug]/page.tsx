@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { type Metadata } from 'next/types';
-import { allDocsPosts } from 'contentlayer/generated';
+import { allPages } from 'contentlayer/generated';
 
 import { MDXContent } from '@/components/mdx-content';
 import { PostIntro } from '@/components/post-intro';
@@ -14,40 +14,36 @@ type PostPageProps = {
 export async function generateStaticParams(): Promise<
   PostPageProps['params'][]
 > {
-  return allDocsPosts.map(({ slug }) => ({
+  return allPages.map(({ slug }) => ({
     slug: slug.split('/'),
   }));
 }
 
 export function generateMetadata({ params }: PostPageProps): Metadata {
-  const { title, excerpt, url } = allDocsPosts.find(
+  const { title } = allPages.find(
     ({ slug }) => slug === params.slug.join('/'),
   ) || {
     title: 'Post Not Found',
     excerpt: null,
-    url: '/news',
+    url: '/',
+    date: new Date().toISOString(),
   };
-
-  const description = excerpt ?? 'Post Not Found';
 
   return {
     title,
-    description,
     openGraph: {
       type: 'article',
       title,
-      description,
     },
     twitter: {
       title,
-      description,
       card: 'summary_large_image',
     },
   };
 }
 
 export default function PostPage({ params }: PostPageProps) {
-  const post = allDocsPosts.find(({ slug }) => slug === params.slug.join('/'));
+  const post = allPages.find(({ slug }) => slug === params.slug.join('/'));
 
   if (!post) {
     notFound();

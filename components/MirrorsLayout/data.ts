@@ -250,4 +250,4 @@ export const mirrorInfoMap = new Map<string, any>([
       name: 'Zabbix',
     },
   ],
-])
+]);
