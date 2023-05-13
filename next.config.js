@@ -6,10 +6,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  experimental: {
-    appDir: true,
-    mdxRs: true,
-  },
 };
 
 const { withContentlayer } = require('next-contentlayer');
