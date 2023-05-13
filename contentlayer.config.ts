@@ -94,6 +94,11 @@ export const Page = defineDocumentType(() => ({
       description: 'The title of the post',
       required: true,
     },
+    excerpt: {
+      type: 'string',
+      description: 'Short summary of the post',
+      required: true,
+    },
   },
   computedFields: {
     url: {
