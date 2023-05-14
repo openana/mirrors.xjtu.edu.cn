@@ -6,7 +6,7 @@ import {
   Contact2Icon,
   Link2Icon,
 } from 'lucide-react';
-import { NewsPost } from '@/.contentlayer/generated';
+import { allNewsPosts } from 'contentlayer/generated';
 
 const _formatDistanceToNow = (date: Date, options?: any) => {
   const result = formatDistanceToNow(new Date(date), {
@@ -17,21 +17,16 @@ const _formatDistanceToNow = (date: Date, options?: any) => {
   return result;
 };
 
-export default function MirrorsAsideLayout({
-  allNewsPosts,
-}: {
-  allNewsPosts: NewsPost[];
-}) {
+export function HomeAside() {
   const latestNewsPosts = allNewsPosts
     .sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
     .slice(0, 5);
-
   return (
-    <div className="flex-initial py-6 w-80">
+    <div>
       <div className="flex flex-col space-y-4">
         <div>
-          <div className="font-medium text-lg">
-            <NewspaperIcon className="inline -mt-0.5" /> 最新通知
+          <div className="font-medium text-xl">
+            <NewspaperIcon className="inline -mt-1" /> 最新通知
           </div>
           <div className="pt-2">
             <ul>
@@ -47,8 +42,8 @@ export default function MirrorsAsideLayout({
           </div>
         </div>
         <div>
-          <div className="font-medium text-lg">
-            <DownloadCloudIcon className="inline -mt-0.5" /> 资源下载
+          <div className="font-medium text-xl">
+            <DownloadCloudIcon className="inline -mt-1" /> 资源下载
           </div>
           <div className="pt-2">
             <ul>
@@ -57,8 +52,8 @@ export default function MirrorsAsideLayout({
           </div>
         </div>
         <div>
-          <div className="font-medium text-lg">
-            <Contact2Icon className="inline -mt-0.5" /> 联系我们
+          <div className="font-medium text-xl">
+            <Contact2Icon className="inline -mt-1" /> 联系我们
           </div>
           <div className="pt-2">
             <ul>
@@ -67,8 +62,8 @@ export default function MirrorsAsideLayout({
           </div>
         </div>
         <div>
-          <div className="font-medium text-lg">
-            <Link2Icon className="inline -mt-0.5" /> 相关链接
+          <div className="font-medium text-xl">
+            <Link2Icon className="inline -mt-1" /> 相关链接
           </div>
           <div className="pt-2">
             <ul>

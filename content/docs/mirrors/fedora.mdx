@@ -1,0 +1,60 @@
+---
+title: Fedora 软件仓库镜像使用帮助
+short_title: Fedora 软件仓库
+excerpt: 西安交通大学软件镜像站 Fedora 软件仓库镜像使用帮助。
+alias:
+  - fedora
+---
+
+## 基本信息
+
+Fedora Linux（第七版以前为 Fedora Core）是由 Fedora 项目社区开发、红帽公司赞助，目标是创建一套新颖、多功能并且自由（开放源代码）的操作系统。Fedora 是商业化的 Red Hat Enterprise Linux 发行版的上游源码。
+
+### 收录架构
+
+- i686
+- x86_64
+- armhfp
+
+### 收录版本
+
+- 28 及以上版本
+
+## 使用说明
+
+本镜像不包含 source 和 debuginfo 部分。
+
+- Fedora 仓库(/etc/yum.repos.d/fedora.repo):
+
+```text
+[fedora]
+name=Fedora $releasever - $basearch
+failovermethod=priority
+baseurl=https://mirrors.xjtu.edu.cn/fedora/releases/$releasever/Everything/$basearch/os/
+enabled=1
+metadata_expire=28d
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
+skip_if_unavailable=False
+```
+
+- Fedora-updates 仓库(/etc/yum.repos.d/fedora-updates.repo):
+
+```text
+[updates]
+name=Fedora $releasever - $basearch - Updates
+failovermethod=priority
+baseurl=https://mirrors.xjtu.edu.cn/fedora/updates/$releasever/$basearch/
+enabled=1
+gpgcheck=1
+metadata_expire=6h
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
+skip_if_unavailable=False
+```
+
+修改源配置文件后，更新本地缓存:
+
+```bash
+sudo yum makecache
+// 或者 sudo dnf makecache
+```

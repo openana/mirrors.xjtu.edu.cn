@@ -1,10 +1,36 @@
-import './globals.css';
-import RootLayout from '@/components/RootLayout';
+import '@/styles/globals.css';
+import { Inter } from 'next/font/google';
+import { type Metadata } from 'next/types';
 
-export const metadata = {
-  title: '西安交通大学软件镜像站',
-  description:
-    '西安交通大学软件镜像站，由西安交通大学网络信息中心指导，西安交通大学学生网络管理协会（西交网管会，XJTUANA）负责开发运维，提供各类软件的镜像下载服务。',
+import { LayoutHeader } from '@/components/layout-header';
+import { LayoutFooter } from '@/components/layout-footer';
+
+import { siteConfig } from '@/config';
+
+export const metadata: Metadata = {
+  title: {
+    default: siteConfig.title,
+    template: `%s · ${siteConfig.title}`,
+  },
 };
 
-export default RootLayout;
+const inter = Inter({ subsets: ['latin'] });
+
+type RootLayoutProps = {
+  children: React.ReactNode;
+};
+
+export default function RootLayout({ children }: RootLayoutProps) {
+  return (
+    <html lang="en">
+      <head />
+      <body className={inter.className}>
+        <div className="h-full flex flex-col">
+          <LayoutHeader title={siteConfig.title} {...siteConfig.header} />
+          {children}
+          <LayoutFooter {...siteConfig.footer} />
+        </div>
+      </body>
+    </html>
+  );
+}

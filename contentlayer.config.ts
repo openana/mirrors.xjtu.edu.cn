@@ -31,6 +31,14 @@ export const DocsPost = defineDocumentType(() => ({
       description: 'The title of the post',
       required: true,
     },
+    short_title: {
+      type: 'string',
+      description: 'The short title of the post',
+    },
+    alias: {
+      type: 'list',
+      of: { type: 'string' },
+    },
     excerpt: {
       type: 'string',
       description: 'Short summary of the post',

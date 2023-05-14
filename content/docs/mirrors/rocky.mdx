@@ -1,0 +1,41 @@
+---
+title: Rocky Linux 软件仓库镜像使用帮助
+short_title: Rocky Linux 软件仓库
+excerpt: 西安交通大学软件镜像站 Rocky Linux 软件仓库镜像使用帮助。
+alias:
+  - rocky
+---
+
+## 基本信息
+
+Rocky Linux 旨在成为一个使用红帽企业 Linux（RHEL）操作系统源代码的完整的下游二进制兼容版本。
+
+### 收录架构
+
+### 收录版本
+
+## 使用说明
+
+首先备份全部 repo 文件：
+
+```shell
+cd /etc/yum.repos.d/ && mkdir -p backup && mv Rocky-* backup/.
+```
+
+然后编辑 **/etc/yum.repos.d/** 中的相应文件，在 `mirrorlist=` 开头行前面加 `#` 注释掉；
+并将 `baseurl=` 开头行取消注释（如果被注释的话），把该行内的域名（例如`dl.rockylinux.org`）替换为 `mirrors.xjtu.edu.cn`。
+
+或者直接执行以下命令替换默认源并刷新缓存：
+
+```shell
+sed -e 's|^mirrorlist=|#mirrorlist=|g' \
+    -e 's|^#baseurl=http://dl.rockylinux.org/$contentdir|baseurl=https://mirrors.xjtu.edu.cn/rockylinux|g' \
+    -i.bak \
+    /etc/yum.repos.d/Rocky-*.repo
+
+dnf makecache
+```
+
+## 相关链接
+
+[Rocky Linux 官网](https://rockylinux.org/)
