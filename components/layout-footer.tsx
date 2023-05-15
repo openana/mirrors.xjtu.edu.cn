@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
-import { type SiteFooterConfig } from '@/config/types';
 import { Link } from '@/components/link';
+import { type SiteFooterConfig } from '@/config/types';
 import { markdownToHtml } from '@/lib/markdown';
 
 const fullYear = new Date().getFullYear();

@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { CloudIcon, HomeIcon, SearchIcon } from 'lucide-react';
+import { Breadcrumb } from 'flowbite-react';
 
 import { MirrorsTable } from '@/components/mirrors-table';
-
 import { mirrorConfigs } from '@/config/mirrors';
 
 function Mirrors() {
@@ -59,7 +59,7 @@ function Indexes({ path }: { path: string }) {
       const part = parts[i];
       const url = `/?mirrors=${parts.slice(0, i + 1).join('/')}/`;
       items.push(
-        <span key={`${i}-slash`} className="mx-1 text-gray-400">
+        <span key={`${i}-slash`} className="mx-2 md:mx-3 text-gray-400">
           /
         </span>,
       );
@@ -90,11 +90,9 @@ function Indexes({ path }: { path: string }) {
     return items;
   };
   return (
-    <div className="flex px-5 py-2 text-gray-700 border border-gray-200 rounded-lg bg-gray-50">
-      <ol className="inline-flex items-center space-x-1 md:space-x-3">
-        {BreadcrumbItems()}
-      </ol>
-    </div>
+    <Breadcrumb className="flex px-5 py-2 text-gray-700 border border-gray-200 rounded-lg bg-gray-50">
+      {BreadcrumbItems()}
+    </Breadcrumb>
   );
 }
 

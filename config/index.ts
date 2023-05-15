@@ -2,6 +2,7 @@ import { SiteConfig } from '@/config/types';
 
 export const siteConfig: SiteConfig = {
   title: '西安交通大学软件镜像站',
+  title_en: 'XJTU Software Mirrors',
   header: {
     pages: [
       { title: '主页', href: '/', activeSelector: '/' },

@@ -2,15 +2,15 @@ import '@/styles/globals.css';
 import { Inter } from 'next/font/google';
 import { type Metadata } from 'next/types';
 
+import FlowbiteContext from '@/app/flowbite-context';
 import { LayoutHeader } from '@/components/layout-header';
 import { LayoutFooter } from '@/components/layout-footer';
-
 import { siteConfig } from '@/config';
 
 export const metadata: Metadata = {
   title: {
-    default: siteConfig.title,
-    template: `%s · ${siteConfig.title}`,
+    default: `${siteConfig.title} · ${siteConfig.title_en}`,
+    template: `%s · ${siteConfig.title} · ${siteConfig.title_en}`,
   },
 };
 
@@ -25,11 +25,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en">
       <head />
       <body className={inter.className}>
-        <div className="h-full flex flex-col">
+        <FlowbiteContext>
           <LayoutHeader title={siteConfig.title} {...siteConfig.header} />
           {children}
           <LayoutFooter {...siteConfig.footer} />
-        </div>
+        </FlowbiteContext>
       </body>
     </html>
   );

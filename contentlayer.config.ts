@@ -51,7 +51,16 @@ export const DocsPost = defineDocumentType(() => ({
       description: 'The URL of the post, e.g. /docs/my-docs-post',
       resolve: (post) => `/${post._raw.flattenedPath}`,
     },
-    ...computedFields,
+    slug: {
+      type: 'string',
+      description: 'The slug of the post, e.g. my-topic/my-post',
+      resolve: (doc) => {
+        const slug = doc._raw.flattenedPath.split('/').slice(1).join('/');
+        if (slug.startsWith('mirrors/')) return slug.slice(8);
+        if (slug.startsWith('others/')) return slug.slice(7);
+        return slug;
+      },
+    },
   },
 }));
 
@@ -173,8 +182,8 @@ export default makeSource({
         rehypePrettyCode,
         {
           theme: {
-            light: 'github-light',
-            dark: 'github-dark',
+            // light: 'github-light',
+            // dark: 'github-dark',
           },
           onVisitLine(node) {
             // Prevent lines from collapsing in `display: grid` mode, and

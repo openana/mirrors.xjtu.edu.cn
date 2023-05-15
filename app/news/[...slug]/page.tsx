@@ -3,7 +3,6 @@ import { type Metadata } from 'next/types';
 import { allNewsPosts } from 'contentlayer/generated';
 
 import { MDXContent } from '@/components/mdx-content';
-import { PostIntro } from '@/components/post-intro';
 
 type PostPageProps = {
   params: {
@@ -57,9 +56,26 @@ export default function PostPage({ params }: PostPageProps) {
 
   return (
     <div className="bg-white dark:bg-gray-900">
-      <div className="max-w-screen-xl w-full flex flex-col mx-auto p-4 space-y-6">
-        <PostIntro title={post.title} date={post.date} tags={post.tags} />
-        <MDXContent code={post.body.code} />
+      <div className="max-w-screen-xl w-full flex mx-auto p-4 space-x-6">
+        <div className="flex-initial">
+          <div className="pt-2 pb-20 w-60 font-normal text-sm sticky"></div>
+        </div>
+        <div className="py-6 basis-3/4">
+          <div className="pt-2">
+            <div className="pb-4 mb-8 border-b border-gray-200 dark:border-gray-800">
+              <h1
+                className="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                id="content"
+              >
+                {post.title}
+              </h1>
+              <p className="mb-4 text-lg text-gray-600 dark:text-gray-400">
+                {post.excerpt}
+              </p>
+            </div>
+            <MDXContent code={post.body.code} />
+          </div>
+        </div>
       </div>
     </div>
   );

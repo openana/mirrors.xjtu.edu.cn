@@ -1,5 +1,6 @@
 export type SiteConfig = {
   title: string;
+  title_en: string;
   header: SiteHeaderConfig;
   footer: SiteFooterConfig;
 };
