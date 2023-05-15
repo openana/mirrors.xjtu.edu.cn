@@ -1,7 +1,13 @@
-type MirrorConfig = {
+export type MirrorConfig = {
   alias: string[];
   title: string;
   desc?: string;
+  path?: string;
+  files?: {
+    path: string;
+    name: string;
+    linkTo?: string;
+  }[];
 };
 
 export const mirrorConfigs: MirrorConfig[] = [
@@ -52,8 +58,8 @@ export const mirrorConfigs: MirrorConfig[] = [
   },
   {
     alias: ['debian-cd'],
-    title: 'Debian Releases',
-    desc: 'Debian Releases',
+    title: 'Debian CD',
+    desc: 'Debian CD',
   },
   {
     alias: ['debian-security'],
@@ -107,8 +113,8 @@ export const mirrorConfigs: MirrorConfig[] = [
   },
   {
     alias: ['kali-images'],
-    title: 'Kali Releases',
-    desc: 'Kali Releases',
+    title: 'Kali Images',
+    desc: 'Kali Images',
   },
   {
     alias: ['kernel'],
@@ -137,12 +143,12 @@ export const mirrorConfigs: MirrorConfig[] = [
   },
   {
     alias: ['raspberrypi-images'],
-    title: 'Raspberry Pi Releases',
-    desc: 'Raspberry Pi Releases',
+    title: 'Raspberry Pi Images',
+    desc: 'Raspberry Pi Images',
   },
   {
     alias: ['raspbian'],
-    title: 'Raspberry Pi OS',
+    title: 'Raspbian',
     desc: 'Raspberry Pi OS (formerly Raspbian) is a Unix-like operating system based on the Debian Linux distribution for the Raspberry Pi family of compact single-board computers. First developed independently in 2012, it has been produced as the primary operating system for these boards since 2013, distributed by the Raspberry Pi Foundation.',
   },
   {
@@ -163,12 +169,14 @@ export const mirrorConfigs: MirrorConfig[] = [
   {
     alias: ['ros2-rhel'],
     title: 'ROS 2 (RHEL)',
-    desc: 'ROS 2 RHEL',
+    desc: 'ROS 2 for RHEL',
+    path: 'ros2/rhel',
   },
   {
     alias: ['ros2-ubuntu'],
     title: 'ROS 2 (Ubuntu)',
-    desc: 'ROS 2 Ubuntu',
+    desc: 'ROS 2 for Ubuntu',
+    path: 'ros2/ubuntu',
   },
   {
     alias: ['rpmfusion'],
@@ -179,6 +187,7 @@ export const mirrorConfigs: MirrorConfig[] = [
     alias: ['ubuntu'],
     title: 'Ubuntu',
     desc: 'Ubuntu is a Linux distribution based on Debian and composed mostly of free and open-source software. Ubuntu is officially released in three editions: Desktop, Server, and Core for Internet of things devices and robots.',
+    files: [{ path: '*', name: 'ubuntu', linkTo: '/' }],
   },
   {
     alias: ['ubuntu-ports'],

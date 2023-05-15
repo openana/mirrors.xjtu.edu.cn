@@ -182,8 +182,7 @@ export default makeSource({
         rehypePrettyCode,
         {
           theme: {
-            // light: 'github-light',
-            // dark: 'github-dark',
+            light: 'github-light',
           },
           onVisitLine(node) {
             // Prevent lines from collapsing in `display: grid` mode, and

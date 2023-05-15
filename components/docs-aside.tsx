@@ -39,7 +39,7 @@ function AsideLinkGroup(props: AsideLinkGroupProps) {
 export function DocsAside() {
   const pathname = usePathname();
   return (
-    <div className="pt-2 pb-20 w-60 font-normal text-sm sticky">
+    <div className="pt-2 pb-20 font-normal text-sm sticky">
       <AsideLinkGroup
         title="入门"
         links={allDocsPosts.filter((post) =>

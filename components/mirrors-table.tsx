@@ -28,14 +28,14 @@ function getMirrorInfo(name: string) {
   return (
     <div className="flex items-center w-full font-normal text-gray-400">
       <div className="whitespace-nowrap font-medium text-sky-700 hover:underline hover:text-sky-900 transition-colors">
-        <Link href={'/?mirrors=' + name + '/'}>{mirrorConfig.title}</Link>
+        <Link href={`/?mirrors=${name}/`}>{mirrorConfig.title}</Link>
       </div>
       {mirrorHelp && (
         <Link href={`/docs/${mirrorHelp.slug}/`}>
           <HelpCircleIcon className="inline-block w-4 h-4 ml-1 -mt-0.5 text-sky-700 hover:text-sky-900 transition-colors" />
         </Link>
       )}
-      <div className="ml-1 truncate text-xs font-normal text-gray-400">
+      <div className="ml-1 truncate text-xs font-normal text-gray-400 hidden md:inline">
         {mirrorConfig.desc}
       </div>
     </div>
@@ -91,20 +91,15 @@ function TableRow(item: MirrorStatus) {
         );
       case 'pre-syncing':
         return (
-          <>
-            <span className="bg-sky-100 text-sky-800 text-xs font-medium ml-2 px-2.5 py-0.5 rounded border border-sky-200">
-              预同步
-            </span>
-          </>
+          <span className="bg-sky-100 text-sky-800 text-xs font-medium ml-2 px-2.5 py-0.5 rounded border border-sky-200">
+            预同步
+          </span>
         );
       case 'syncing':
         return (
-          <>
-            <span className="bg-sky-100 text-sky-800 text-xs font-medium ml-2 px-2.5 py-0.5 rounded border border-sky-200">
-              同步中
-            </span>
-            <Loader2Icon className="ml-1 w-4 h-4 inline-block text-sky-600 animate-spin" />
-          </>
+          <span className="bg-sky-100 text-sky-800 text-xs font-medium ml-2 px-2.5 py-0.5 rounded border border-sky-200">
+            同步中
+          </span>
         );
     }
   }
@@ -112,8 +107,13 @@ function TableRow(item: MirrorStatus) {
     <tr className={getClass(item.status)}>
       <td className="px-6 py-2">{getMirrorInfo(item.name)}</td>
       <td className="px-6 py-2">
-        {getUpdateInfo(item)}
-        {getStatusInfo(item)}
+        <span>{getUpdateInfo(item)}</span>
+        <span className="hidden md:inline">{getStatusInfo(item)}</span>
+        {item.status === 'syncing' && (
+          <span>
+            <Loader2Icon className="ml-1 w-4 h-4 inline-block text-sky-600 animate-spin" />
+          </span>
+        )}
       </td>
     </tr>
   );
@@ -136,7 +136,7 @@ export function MirrorsTable(props: MirrorsTableProps) {
           <th scope="col" className="px-6 py-3">
             Name
           </th>
-          <th scope="col" className="px-6 py-3 w-1/4">
+          <th scope="col" className="px-6 py-3 w-40 md:w-56">
             Last Update
           </th>
         </tr>

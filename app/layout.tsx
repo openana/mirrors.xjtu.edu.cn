@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     default: `${siteConfig.title} · ${siteConfig.title_en}`,
     template: `%s · ${siteConfig.title} · ${siteConfig.title_en}`,
   },
+  icons: '/images/xjtuana-logo.svg',
 };
 
 const inter = Inter({ subsets: ['latin'] });

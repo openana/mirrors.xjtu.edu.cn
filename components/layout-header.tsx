@@ -3,17 +3,37 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Navbar } from 'flowbite-react';
+import { useNavbarContext } from 'flowbite-react/lib/esm/components/Navbar/NavbarContext';
 
-import { type SiteHeaderConfig } from '@/config/types';
+import { type SiteHeaderConfig, type SitePageConfig } from '@/config/types';
+
+function NavbarLink({ page }: { page: SitePageConfig }) {
+  const pathname = usePathname();
+  // TODO: fix this
+  // const { isOpen, setIsOpen } = useNavbarContext();
+  return (
+    <Navbar.Link
+      as={Link}
+      href={page.href}
+      active={
+        (page.activeSelector === '/' && pathname === page.activeSelector) ||
+        (page.activeSelector !== '/' &&
+          pathname.startsWith(page.activeSelector))
+      }
+      // onClick={() => isOpen && setIsOpen(false)}
+    >
+      {page.title}
+    </Navbar.Link>
+  );
+}
 
 type LayoutHeaderProps = {
   title: string;
 } & SiteHeaderConfig;
 
 export function LayoutHeader(props: LayoutHeaderProps) {
-  const pathname = usePathname();
   return (
-    <div>
+    <div className="sticky top-0 z-40 flex-none mx-auto w-full bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
       <Navbar>
         <Navbar.Brand as={Link} className="h-12" href="/">
           <span className="self-center text-2xl font-medium whitespace-nowrap text-sky-700 dark:text-white">
@@ -23,19 +43,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
         <Navbar.Toggle />
         <Navbar.Collapse>
           {props.pages.map((page, key) => (
-            <Navbar.Link
-              key={key}
-              as={Link}
-              href={page.href}
-              active={
-                (page.activeSelector === '/' &&
-                  pathname === page.activeSelector) ||
-                (page.activeSelector !== '/' &&
-                  pathname.startsWith(page.activeSelector))
-              }
-            >
-              {page.title}
-            </Navbar.Link>
+            <NavbarLink key={key} page={page} />
           ))}
         </Navbar.Collapse>
       </Navbar>

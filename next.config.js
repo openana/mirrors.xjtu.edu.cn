@@ -1,19 +1,31 @@
+const extraConfigs =
+  process.env.NODE_ENV === 'development'
+    ? {
+        async rewrites() {
+          return [
+            {
+              source: '/api/mirrors.json',
+              destination: 'https://mirrors.xjtu.edu.cn/api/status.json',
+            },
+            {
+              source: '/api/mirrors/:path*',
+              destination: 'https://mirrors.xjtu.edu.cn/api/mirrors/:path*',
+            },
+          ];
+        },
+      }
+    : {
+        output: 'export',
+        distDir: 'dist',
+      };
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // output: 'export',
   trailingSlash: true,
-  distDir: 'dist',
   images: {
     unoptimized: true,
   },
-  async rewrites() {
-    return [
-      {
-        source: '/api/mirrors.json',
-        destination: 'https://mirrors.xjtu.edu.cn/api/status.json',
-      },
-    ];
-  },
+  ...extraConfigs,
 };
 
 const { withContentlayer } = require('next-contentlayer');

@@ -3,7 +3,7 @@ import { CustomFlowbiteTheme } from 'flowbite-react/lib/esm/components/Flowbite/
 export const flowbiteTheme: CustomFlowbiteTheme = {
   navbar: {
     root: {
-      base: 'border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800',
+      base: '',
       inner: {
         base: 'mx-auto flex flex-wrap items-center justify-between px-4 py-2 md:py-3',
       },

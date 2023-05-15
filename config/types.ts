@@ -6,11 +6,14 @@ export type SiteConfig = {
 };
 
 export type SiteHeaderConfig = {
-  pages: {
-    title: string;
-    href: string;
-    activeSelector: string;
-  }[];
+  pages: SitePageConfig[];
+};
+
+export type SitePageConfig = {
+  title: string;
+  title_en?: string;
+  href: string;
+  activeSelector: string;
 };
 
 export type SiteFooterConfig = {

@@ -12,7 +12,7 @@ export function MDXContent({ code }: MDXContentProps) {
   const Component = useMDXComponent(code);
 
   return (
-    <article className="prose prose-slate rose-headings:drop-shadow-sm">
+    <article className="prose max-w-none min-w-0 prose-slate rose-headings:drop-shadow-sm">
       <Component components={MDXComponents} />
     </article>
   );

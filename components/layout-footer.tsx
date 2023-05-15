@@ -61,13 +61,13 @@ type LayoutFooterProps = SiteFooterConfig;
 
 export function LayoutFooter(props: LayoutFooterProps) {
   return (
-    <div className="bg-white border-gray-200 dark:bg-gray-900">
-      <div className="max-w-screen-xl mx-auto flex flex-col">
-        <div className="flex flex-wrap items-center justify-between p-4 text-sm text-neutral-500">
+    <div className="w-full mx-auto container">
+      <div className="flex flex-col pt-6">
+        <div className="flex flex-wrap items-center justify-between px-4 text-sm text-neutral-500">
           <div className="max-w-3xl">
             <FooterDescription description={props.description} />
           </div>
-          <div className="ml-autox px-6 py-4">
+          <div className="ml-auto px-6 py-4">
             <Image
               src={props.logo.src}
               alt={props.logo.alt}
@@ -76,7 +76,7 @@ export function LayoutFooter(props: LayoutFooterProps) {
             />
           </div>
         </div>
-        <div className="flex flex-row-reverse items-center justify-end flex-wrap p-4 text-xs text-neutral-600">
+        <div className="flex flex-row-reverse items-center justify-end flex-wrap px-4 pb-4 text-xs text-neutral-600">
           <div className="h-6 mt-4">
             {props.links.map((link, key) => (
               <div key={key} className="pr-6 pb-2 inline-block ">

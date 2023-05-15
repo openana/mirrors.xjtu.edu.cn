@@ -22,7 +22,7 @@ export function HomeAside() {
     .sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
     .slice(0, 5);
   return (
-    <div>
+    <div className="pt-6 lg:pt-8">
       <div className="flex flex-col space-y-4">
         <div>
           <div className="font-medium text-xl">
