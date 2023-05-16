@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { CloudIcon, HomeIcon, SearchIcon } from 'lucide-react';
-import { Breadcrumb } from 'flowbite-react';
+import { Breadcrumb, Checkbox } from 'flowbite-react';
 
 import useSWR, { SWRConfig, useSWRConfig } from 'swr';
 
@@ -14,8 +14,12 @@ import { mirrorConfigs } from '@/config/mirrors';
 import { type MirrorConfig } from '@/config/mirrors';
 import path from 'path';
 
-function Mirrors() {
-  const [mirrors, setMirrors] = useState([]);
+type MirrorsProps = {
+  filter: Filter;
+};
+
+function Mirrors(props: MirrorsProps) {
+  const [mirrors, setMirrors] = useState<any[]>([]);
   const [counter, setCounter] = useState(true);
   const [isLoading, setLoading] = useState(true);
 
@@ -23,11 +27,6 @@ function Mirrors() {
     fetch('/api/mirrors.json')
       .then((res) => res.json())
       .then((data) => {
-        data.push({
-          name: 'pypi',
-          status: 'proxy',
-          last_update_ts: -1,
-        });
         setMirrors(data);
         setLoading(false);
       });
@@ -37,12 +36,19 @@ function Mirrors() {
     return () => clearInterval(interval);
   }, [counter]);
 
-  return <MirrorsTable isLoading={isLoading} mirrors={mirrors} />;
+  return (
+    <MirrorsTable
+      isLoading={isLoading}
+      mirrors={mirrors}
+      filter={props.filter}
+    />
+  );
 }
 
 type FilesProps = {
   mirrorsPath: string;
   mirrorConfig: MirrorConfig;
+  filter: Filter;
 };
 
 const localStorageProvider = () => {
@@ -61,7 +67,7 @@ const localStorageProvider = () => {
   return map;
 };
 
-function Files({ mirrorsPath, mirrorConfig }: FilesProps) {
+function Files(props: FilesProps) {
   const { cache, mutate, ...extraConfig } = useSWRConfig();
 
   const fetcher = async (url: string) => {
@@ -70,7 +76,7 @@ function Files({ mirrorsPath, mirrorConfig }: FilesProps) {
       return cachedData.data;
     }
 
-    const res = await fetch(url);
+    const res = await fetch(url, { redirect: 'follow' });
 
     // If the status code is not in the range 200-299,
     // we still try to parse and throw it.
@@ -86,11 +92,11 @@ function Files({ mirrorsPath, mirrorConfig }: FilesProps) {
     return res.json();
   };
 
-  const { data, error } = useSWR('/api/mirrors/' + mirrorsPath, fetcher);
+  const { data, error } = useSWR('/api/mirrors/' + props.mirrorsPath, fetcher);
   const files = data;
   const isLoading = !error && !data;
 
-  const parts = mirrorsPath.split('/').filter((part) => part !== '');
+  const parts = props.mirrorsPath.split('/').filter((part) => part !== '');
   const BreadcrumbItems = () => {
     const items = [];
     items.push(
@@ -111,7 +117,7 @@ function Files({ mirrorsPath, mirrorConfig }: FilesProps) {
           /
         </span>,
       );
-      const name = i === 0 ? mirrorConfig.title : part;
+      const name = i === 0 ? props.mirrorConfig.title : part;
       if (i !== parts.length - 1) {
         items.push(
           <li key={i} className="inline-flex items-center">
@@ -139,14 +145,15 @@ function Files({ mirrorsPath, mirrorConfig }: FilesProps) {
   };
   return (
     <SWRConfig value={{ provider: localStorageProvider }}>
-      <Breadcrumb className="flex px-5 py-2 mb-4 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 overflow-x-scroll">
+      <Breadcrumb className="flex px-3 md:px-5 py-2 mb-4 text-xs md:text-base text-gray-700 border border-gray-200 rounded-lg bg-gray-50 overflow-x-scroll whitespace-nowrap">
         {BreadcrumbItems()}
       </Breadcrumb>
       <FilesTable
-        mirrorConfig={mirrorConfig}
+        mirrorConfig={props.mirrorConfig}
         isLoading={isLoading}
         isRoot={parts.length === 1}
-        mirrorsPath={mirrorsPath}
+        mirrorsPath={props.mirrorsPath}
+        filter={props.filter}
         files={files}
         error={error}
       />
@@ -154,7 +161,20 @@ function Files({ mirrorsPath, mirrorConfig }: FilesProps) {
   );
 }
 
+type Filter = {
+  name: string;
+  showGit: boolean;
+  showProxy: boolean;
+  showMirrorZ: boolean;
+};
+
 export function HomeMain() {
+  const [filter, setFilter] = useState<Filter>({
+    name: '',
+    showGit: true,
+    showProxy: true,
+    showMirrorZ: false,
+  });
   let mirrorsPath = useSearchParams().get('mirrors');
   let mirrorConfig = undefined;
   if (mirrorsPath) {
@@ -178,7 +198,7 @@ export function HomeMain() {
         );
       case 'degraded':
         return (
-          <span className="flex items-center text-yellow-500">
+          <span className="flex items-center text-yellow-600">
             服务降级
             <span className="relative flex h-2 w-2 ml-1">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
@@ -231,21 +251,86 @@ export function HomeMain() {
             </kbd>
             <span>+</span>
             <kbd className="px-1 py-0.5 text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500">
-              F
+              K
             </kbd>
           </span>
           <input
             type="text"
             id="table-filter"
             className="block p-2 pl-8 pr-24 text-sm w-full text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-sky-500 focus:border-sky-500"
-            placeholder="查找镜像"
+            placeholder={mirrorsPath && mirrorConfig ? '查找文件' : '查找镜像'}
+            onChange={(e) => {
+              setFilter({ ...filter, name: e.target.value });
+            }}
           />
         </div>
       </div>
       {mirrorsPath && mirrorConfig ? (
-        <Files mirrorsPath={mirrorsPath} mirrorConfig={mirrorConfig} />
+        <Files
+          mirrorsPath={mirrorsPath}
+          mirrorConfig={mirrorConfig}
+          filter={filter}
+        />
       ) : (
-        <Mirrors />
+        <>
+          <Mirrors filter={filter} />
+          <div className="pt-4 pb-2 flex flex-col space-y-2 md:space-y-0 md:space-x-3 md:flex-row">
+            <div className="flex items-start">
+              <div className="flex items-center h-5">
+                <Checkbox
+                  id="check-git"
+                  className="focus:ring-sky-500 h-4 w-4 text-sky-600 border-gray-300 rounded"
+                  defaultChecked={filter.showGit}
+                  onChange={(event) => {
+                    setFilter({ ...filter, showGit: event.target.checked });
+                  }}
+                />
+              </div>
+              <label
+                htmlFor="check-git"
+                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >
+                包含 Git 仓库的镜像
+              </label>
+            </div>
+            <div className="flex items-start">
+              <div className="flex items-center h-5">
+                <Checkbox
+                  id="check-proxy"
+                  className="focus:ring-sky-500 h-4 w-4 text-sky-600 border-gray-300 rounded"
+                  defaultChecked={filter.showProxy}
+                  onChange={(event) => {
+                    setFilter({ ...filter, showProxy: event.target.checked });
+                  }}
+                />
+              </div>
+              <label
+                htmlFor="check-proxy"
+                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >
+                包含通过代理的镜像
+              </label>
+            </div>
+            <div className="flex items-start">
+              <div className="flex items-center h-5">
+                <Checkbox
+                  id="check-mirrorz"
+                  className="focus:ring-sky-500 h-4 w-4 text-sky-600 border-gray-300 rounded"
+                  defaultChecked={filter.showMirrorZ}
+                  onChange={(event) => {
+                    setFilter({ ...filter, showMirrorZ: event.target.checked });
+                  }}
+                />
+              </div>
+              <label
+                htmlFor="check-mirrorz"
+                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >
+                包含 MirrorZ.org 的镜像
+              </label>
+            </div>
+          </div>
+        </>
       )}
     </div>
   );

@@ -13,17 +13,25 @@ const extraConfigs =
             },
           ];
         },
+        images: {
+          unoptimized: true,
+        },
       }
     : {
         output: 'export',
         distDir: 'dist',
+        productionBrowserSourceMaps: true,
+        useFileSystemPublicRoutes: false,
+        compiler: {
+          removeConsole: true,
+        },
       };
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   trailingSlash: true,
-  images: {
-    unoptimized: true,
+  experimental: {
+    appDir: true,
   },
   ...extraConfigs,
 };

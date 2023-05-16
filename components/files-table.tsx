@@ -47,6 +47,7 @@ type FilesTableProps = {
   mirrorsPath: string;
   isLoading: boolean;
   isRoot: boolean;
+  filter: any;
   files: File[];
   error?: any;
 };
@@ -109,13 +110,14 @@ function TableRow({ mirrorsPath, item, linkTo }: TableRowProps) {
   }
   return (
     <tr className="border-t transition-colors animate-fade-in bg-white hover:bg-sky-50">
-      <td className="pl-6 pr-2 py-2 truncate">
+      <td className="pl-4 md:pl-6 pr-2 py-2 truncate">
         {item.type === 'directory' ? (
           <Link
             className="text-sky-700 transition-colors hover:text-sky-900 hover:underline"
             href={`/?mirrors=${path.resolve(
               mirrorsPath + (linkTo ? linkTo : item.name),
             )}/`}
+            prefetch={false}
           >
             {prefixIcon}
             {item.name}/{suffixIcon}
@@ -128,10 +130,10 @@ function TableRow({ mirrorsPath, item, linkTo }: TableRowProps) {
           </span>
         )}
       </td>
-      <td className="pl-2 pr-6 py-2 text-end">
+      <td className="pl-2 pr-4 md:pr-6 py-2 text-end">
         {item.size !== undefined ? sizeToTGMKByte(item.size) : '-'}
       </td>
-      <td className="pr-6 pl-2 py-2 text-center hidden md:table-cell">
+      <td className="pr-6 pl-2 py-2 text-end hidden md:table-cell">
         <span>{format(new Date(item.mtime), 'yyyy/MM/dd HH:mm:ss')}</span>
       </td>
     </tr>
@@ -141,51 +143,6 @@ function TableRow({ mirrorsPath, item, linkTo }: TableRowProps) {
 const MAX_LENGTH = 2000;
 
 export function FilesTable(props: FilesTableProps) {
-  // const [filter, setFilter] = useState({
-  //   name: '',
-  //   sortByName: 'none',
-  //   sortByTime: 'none',
-  // });
-
-  // const files = props.files
-  //   .filter((elem) => {
-  //     return (
-  //       elem != undefined &&
-  //       elem.name.toLowerCase().includes(filter.name.toLowerCase())
-  //     );
-  //   })
-  //   .sort((a, b) => {
-  //     if (filter.sortByName === 'asc') {
-  //       return a.name.localeCompare(b.name);
-  //     } else if (filter.sortByName === 'desc') {
-  //       return b.name.localeCompare(a.name);
-  //     } else {
-  //       return 0;
-  //     }
-  //   });
-  // const sortByName = () =>
-  //   setFilter({
-  //     ...filter,
-  //     sortByTime: 'none',
-  //     sortByName:
-  //       filter.sortByName === 'asc'
-  //         ? 'desc'
-  //         : filter.sortByName === 'desc'
-  //         ? 'none'
-  //         : 'asc',
-  //   });
-  // const sortByTime = () =>
-  //   setFilter({
-  //     ...filter,
-  //     sortByName: 'none',
-  //     sortByTime:
-  //       filter.sortByTime === 'asc'
-  //         ? 'none'
-  //         : filter.sortByTime === 'desc'
-  //         ? 'asc'
-  //         : 'desc',
-  //   });
-
   const getLinkTo = (item: File) => {
     return props.mirrorConfig.files?.find(
       (file) =>
@@ -193,44 +150,51 @@ export function FilesTable(props: FilesTableProps) {
         file.name === item.name,
     )?.linkTo;
   };
+  const files = props.files?.filter((item) => {
+    if (props.filter.name === '') {
+      return true;
+    }
+    return item.name.toLowerCase().includes(props.filter.name.toLowerCase());
+  });
   return (
     <table className="relative table-fixed w-full text-sm text-left text-gray-500 rounded-md overflow-hidden dark:text-gray-400">
       <thead className="text-xs text-sky-700 uppercase bg-gray-50 dark:bg-sky-700 dark:text-sky-400">
         <tr>
-          <th scope="col" className="pl-6 pr-2 py-3">
+          <th scope="col" className="pl-4 md:pl-6 pr-2 py-3">
             Name
           </th>
-          <th scope="col" className="pl-2 pr-6 py-3 text-end w-28">
+          <th scope="col" className="pl-2 pr-4 md:pr-6 py-3 text-end w-28">
             Size
           </th>
           <th
             scope="col"
-            className="text-center w-0 p-0 overflow-hidden md:pr-6 md:pl-2 md:py-3 md:w-48"
+            className="w-0 p-0 text-end overflow-hidden md:pr-6 md:pl-2 md:py-3 md:w-48"
           >
             Date
           </th>
         </tr>
       </thead>
       <tbody>
-        {props.files?.length > MAX_LENGTH && (
+        {files?.length > MAX_LENGTH && (
           <tr className="bg-white border-t dark:bg-gray-800 dark:border-gray-700">
             <td
               colSpan={3}
-              className="px-6 py-4 text-yellow-800 bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 text-center"
+              className="px-4 md:px-6 py-4 text-yellow-800 bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 text-center"
             >
               抱歉，我们不得不将此目录截断为 {MAX_LENGTH.toLocaleString()}{' '}
               个文件。
-              {(props.files.length - MAX_LENGTH).toLocaleString()}{' '}
+              {(files.length - MAX_LENGTH).toLocaleString()}{' '}
               个条目被省略了。别担心，您仍然可以搜索或对它们进行排序。
             </td>
           </tr>
         )}
         {!props.isRoot && (
           <tr className="border-t transition-colors animate-fade-in bg-white hover:bg-sky-50">
-            <td colSpan={3} className="px-6 py-2 truncate">
+            <td colSpan={3} className="px-4 md:px-6 py-2 truncate">
               <Link
                 className="text-sky-700 transition-colors hover:text-sky-900 hover:underline"
                 href={`/?mirrors=${path.resolve(props.mirrorsPath + '../')}/`}
+                prefetch={false}
               >
                 <FolderOpenIcon className="inline-block h-4 w-4 mr-1 -mt-0.5" />
                 ../
@@ -240,24 +204,33 @@ export function FilesTable(props: FilesTableProps) {
         )}
         {props.isLoading ? (
           <tr className="bg-white border-t dark:bg-gray-800 dark:border-gray-700">
-            <td colSpan={3} className="px-6 py-2 text-sky-900 dark:text-white">
+            <td
+              colSpan={3}
+              className="px-4 md:px-6 py-2 text-sky-900 dark:text-white"
+            >
               Loading...
             </td>
           </tr>
         ) : props.error ? (
           <tr className="bg-white border-t dark:bg-gray-800 dark:border-gray-700">
-            <td colSpan={3} className="px-6 py-2 text-sky-900 dark:text-white">
+            <td
+              colSpan={3}
+              className="px-4 md:px-6 py-2 text-sky-900 dark:text-white"
+            >
               {props.error.status}: {props.error.message}
             </td>
           </tr>
-        ) : props.files.length === 0 ? (
+        ) : files.length === 0 ? (
           <tr className="bg-white border-t dark:bg-gray-800 dark:border-gray-700">
-            <td colSpan={3} className="px-6 py-2 text-gray-900 dark:text-white">
+            <td
+              colSpan={3}
+              className="px-4 md:px-6 py-2 text-gray-900 dark:text-white"
+            >
               No files found
             </td>
           </tr>
         ) : (
-          props.files
+          files
             .slice(0, MAX_LENGTH)
             .map((item, key) => (
               <TableRow

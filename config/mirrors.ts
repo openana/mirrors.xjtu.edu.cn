@@ -8,6 +8,8 @@ export type MirrorConfig = {
     name: string;
     linkTo?: string;
   }[];
+  display_only?: boolean;
+  status?: any;
 };
 
 export const mirrorConfigs: MirrorConfig[] = [
@@ -30,6 +32,17 @@ export const mirrorConfigs: MirrorConfig[] = [
     alias: ['centos'],
     title: 'CentOS',
     desc: 'CentOS (from Community Enterprise Operating System; also known as CentOS Linux) was a Linux distribution that provided a free and open-source community-supported computing platform, functionally compatible with its upstream source, Red Hat Enterprise Linux (RHEL). In January 2014, CentOS announced the official joining with Red Hat while staying independent from RHEL, under a new CentOS governing board.',
+  },
+  {
+    alias: ['centos-vault'],
+    title: 'CentOS Vault',
+    desc: 'CentOS Vault',
+    display_only: true,
+    status: {
+      name: 'centos-vault',
+      status: 'mirrorz',
+      last_update_ts: -1,
+    },
   },
   {
     alias: ['ceph'],
@@ -95,6 +108,7 @@ export const mirrorConfigs: MirrorConfig[] = [
     alias: ['homebrew-bottles'],
     title: 'Homebrew Bottles',
     desc: 'Homebrew Bottles',
+    files: [{ path: '*', name: 'bottles', linkTo: '/' }],
   },
   {
     alias: ['iina'],
@@ -135,6 +149,12 @@ export const mirrorConfigs: MirrorConfig[] = [
     alias: ['pypi'],
     title: 'PyPI',
     desc: 'The Python Package Index, abbreviated as PyPI and also known as the Cheese Shop (a reference to the Monty Python\'s Flying Circus sketch "Cheese Shop"), is the official third-party software repository for Python. It is analogous to the CPAN repository for Perl and to the CRAN repository for R. PyPI is run by the Python Software Foundation, a charity. Some package managers, including pip, use PyPI as the default source for packages and their dependencies.',
+    display_only: true,
+    status: {
+      name: 'pypi',
+      status: 'proxy',
+      last_update_ts: -1,
+    },
   },
   {
     alias: ['raspberrypi'],
@@ -193,11 +213,13 @@ export const mirrorConfigs: MirrorConfig[] = [
     alias: ['ubuntu-ports'],
     title: 'Ubuntu Ports',
     desc: 'Ubuntu Ports.',
+    files: [{ path: '*', name: 'ubuntu-ports', linkTo: '/' }],
   },
   {
     alias: ['ubuntu-releases'],
     title: 'Ubuntu Releases',
     desc: 'Ubuntu Releases.',
+    files: [{ path: '*', name: 'releases', linkTo: '/' }],
   },
   {
     alias: ['vim'],

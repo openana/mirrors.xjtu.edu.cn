@@ -1,5 +1,5 @@
 import '@/styles/globals.css';
-import { Inter } from 'next/font/google';
+import { Open_Sans } from 'next/font/google';
 import { type Metadata } from 'next/types';
 
 import FlowbiteContext from '@/app/flowbite-context';
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   icons: '/images/xjtuana-logo.svg',
 };
 
-const inter = Inter({ subsets: ['latin'] });
+const openSans = Open_Sans({ subsets: ['latin'] });
 
 type RootLayoutProps = {
   children: React.ReactNode;
@@ -25,7 +25,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <head />
-      <body className={inter.className}>
+      <body className={openSans.className}>
         <FlowbiteContext>
           <LayoutHeader title={siteConfig.title} {...siteConfig.header} />
           {children}

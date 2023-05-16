@@ -6,7 +6,7 @@ import { formatDistanceToNow } from 'date-fns';
 import { zhCN } from 'date-fns/locale';
 import { allDocsPosts } from 'contentlayer/generated';
 
-import { mirrorConfigs } from '@/config/mirrors';
+import { MirrorConfig, mirrorConfigs } from '@/config/mirrors';
 
 type MirrorStatus = {
   name: string;
@@ -17,35 +17,46 @@ type MirrorStatus = {
 type MirrorsTableProps = {
   isLoading: boolean;
   mirrors: MirrorStatus[];
+  filter: any;
 };
 
-function getMirrorInfo(name: string) {
-  const mirrorConfig = mirrorConfigs.find((item) => item.alias.includes(name));
+function getMirrorInfo(config: MirrorConfig) {
+  const name = config.status?.name;
   const mirrorHelp = allDocsPosts.find((item) => item.alias?.includes(name));
-  if (!mirrorConfig) {
-    return <span className="font-medium text-gray-900">{name}</span>;
-  }
   return (
-    <div className="flex items-center w-full font-normal text-gray-400">
-      <div className="whitespace-nowrap font-medium text-sky-700 hover:underline hover:text-sky-900 transition-colors">
-        <Link href={`/?mirrors=${name}/`}>{mirrorConfig.title}</Link>
-      </div>
+    <div className="flex items-center w-full font-normal">
+      {config.display_only ? (
+        <div className="whitespace-nowrap font-medium text-sky-900">
+          <span>{config.title}</span>
+        </div>
+      ) : (
+        <div className="whitespace-nowrap font-medium text-sky-700 hover:underline hover:text-sky-900 transition-colors">
+          <Link href={`/?mirrors=${name}/`} prefetch={false}>
+            {config.title}
+          </Link>
+        </div>
+      )}
       {mirrorHelp && (
-        <Link href={`/docs/${mirrorHelp.slug}/`}>
+        <Link
+          href={`/docs/${mirrorHelp.slug}/`}
+          aria-label={`Help for ${name}`}
+        >
           <HelpCircleIcon className="inline-block w-4 h-4 ml-1 -mt-0.5 text-sky-700 hover:text-sky-900 transition-colors" />
         </Link>
       )}
-      <div className="ml-1 truncate text-xs font-normal text-gray-400 hidden md:inline">
-        {mirrorConfig.desc}
+      <div className="ml-1 truncate text-xs font-normal text-gray-500 hidden md:inline">
+        {config.desc}
       </div>
     </div>
   );
 }
 
-function TableRow(item: MirrorStatus) {
+function TableRow(config: MirrorConfig) {
   function getClass(status: string) {
     const _class = 'border-t transition-colors animate-fade-in ';
     switch (status) {
+      case 'mirrorz':
+        return _class + 'bg-green-50 hover:bg-green-100';
       case 'failed':
         return _class + 'bg-orange-50 hover:bg-orange-100';
       case 'syncing':
@@ -64,7 +75,7 @@ function TableRow(item: MirrorStatus) {
       case 'proxy':
         return '代理访问';
       case 'mirrorz':
-        return 'MirrorZ.org';
+        return '由 MirrorZ.org 提供';
       default:
         if (item.last_update_ts < 0) return '正在初始化';
         return (
@@ -104,14 +115,14 @@ function TableRow(item: MirrorStatus) {
     }
   }
   return (
-    <tr className={getClass(item.status)}>
-      <td className="px-6 py-2">{getMirrorInfo(item.name)}</td>
-      <td className="px-6 py-2">
-        <span>{getUpdateInfo(item)}</span>
-        <span className="hidden md:inline">{getStatusInfo(item)}</span>
-        {item.status === 'syncing' && (
+    <tr className={getClass(config.status?.status)}>
+      <td className="px-4 py-2 md:px-6">{getMirrorInfo(config)}</td>
+      <td className="px-4 py-2 md:px-6">
+        <span>{getUpdateInfo(config.status)}</span>
+        <span className="hidden md:inline">{getStatusInfo(config.status)}</span>
+        {config.status?.status === 'syncing' && (
           <span>
-            <Loader2Icon className="ml-1 w-4 h-4 inline-block text-sky-600 animate-spin" />
+            <Loader2Icon className="inline-block w-4 h-4 ml-2 -mt-0.5 text-sky-600 animate-spin" />
           </span>
         )}
       </td>
@@ -122,21 +133,54 @@ function TableRow(item: MirrorStatus) {
 export function MirrorsTable(props: MirrorsTableProps) {
   if (props.mirrors.length === 0) {
     mirrorConfigs.forEach((item) => {
-      props.mirrors.push({
+      if (item.status !== undefined) return;
+      item.status = {
         name: item.alias[0],
         status: 'unknown',
         last_update_ts: -1,
-      });
+      };
+    });
+  } else {
+    mirrorConfigs.forEach((item) => {
+      const status = props.mirrors.find((i) => item.alias.includes(i.name));
+      if (status) item.status = status;
     });
   }
+  const mirrors = mirrorConfigs
+    .filter(
+      (item) => item.status !== undefined && item.status.status !== 'disabled',
+    )
+    .filter((item) => {
+      if (
+        props.filter.name !== '' &&
+        !item.title.toLowerCase().includes(props.filter.name.toLowerCase())
+      ) {
+        return false;
+      }
+      if (!props.filter.showGit && item.status?.status === 'git') {
+        return false;
+      }
+      if (!props.filter.showProxy && item.status?.status === 'proxy') {
+        return false;
+      }
+      if (!props.filter.showMirrorZ && item.status?.status === 'mirrorz') {
+        return false;
+      }
+      return true;
+    })
+    .sort((a, b) =>
+      a.title.localeCompare(b.title, undefined, {
+        sensitivity: 'base',
+      }),
+    );
   return (
     <table className="relative table-fixed w-full text-sm text-left text-gray-500 rounded-md overflow-hidden dark:text-gray-400">
       <thead className="text-xs text-sky-700 uppercase bg-gray-50 dark:bg-sky-700 dark:text-sky-400">
         <tr>
-          <th scope="col" className="px-6 py-3">
+          <th scope="col" className="px-4 md:px-6 py-3">
             Name
           </th>
-          <th scope="col" className="px-6 py-3 w-40 md:w-56">
+          <th scope="col" className="px-4 md:px-6 py-3 w-40 md:w-56">
             Last Update
           </th>
         </tr>
@@ -144,26 +188,25 @@ export function MirrorsTable(props: MirrorsTableProps) {
       <tbody>
         {props.isLoading && false && (
           <tr className="bg-white border-t dark:bg-gray-800 dark:border-gray-700">
-            <td colSpan={2} className="px-6 py-2 text-sky-900 dark:text-white">
-              Loading...
+            <td
+              colSpan={2}
+              className="px-4 md:px-6 py-2 text-sky-900 dark:text-white"
+            >
+              正在加载...
             </td>
           </tr>
         )}
-        {props.mirrors.length === 0 ? (
+        {mirrors.length === 0 ? (
           <tr className="bg-white border-t dark:bg-gray-800 dark:border-gray-700">
-            <td colSpan={2} className="px-6 py-2 text-gray-900 dark:text-white">
-              No mirrors found
+            <td
+              colSpan={2}
+              className="px-4 md:px-6 py-2 text-gray-900 dark:text-white"
+            >
+              未找到镜像
             </td>
           </tr>
         ) : (
-          props.mirrors
-            .filter((item) => item.status !== 'disabled')
-            .sort((a, b) =>
-              a.name.localeCompare(b.name, undefined, {
-                sensitivity: 'base',
-              }),
-            )
-            .map((item, key) => <TableRow key={key} {...item} />)
+          mirrors.map((item, key) => <TableRow key={key} {...item} />)
         )}
       </tbody>
     </table>
