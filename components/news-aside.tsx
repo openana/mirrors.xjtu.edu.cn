@@ -1,8 +1,9 @@
 'use client';
 
+import { compareDesc, format } from 'date-fns';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { allDocsPosts } from 'contentlayer/generated';
+import { allNewsPosts } from 'contentlayer/generated';
 
 type AsideLinkGroupProps = {
   title: string;
@@ -25,9 +26,12 @@ function AsideLinkGroup(props: AsideLinkGroupProps) {
                   ? 'text-sky-900 bg-sky-50'
                   : 'text-sky-700'
               }`}
-              href={`/docs/${link.slug}/`}
+              href={`/news/${link.slug}/`}
             >
               {link.short_title ?? link.title}
+              <div className="text-xs font-normal text-gray-500">
+                发布于 {format(new Date(link.date), 'yyyy 年 M 月 d 日')}
+              </div>
             </Link>
           </li>
         ))}
@@ -36,39 +40,12 @@ function AsideLinkGroup(props: AsideLinkGroupProps) {
   );
 }
 
-export function DocsAside() {
+export function NewsAside() {
   const pathname = usePathname();
   if (!pathname) return null;
   return (
     <div className="pt-2 pb-20 font-normal text-sm sticky">
-      <AsideLinkGroup
-        title="入门"
-        links={allDocsPosts.filter((post) =>
-          post.url.startsWith('/docs/getting-started/'),
-        )}
-        pathname={pathname}
-      />
-      <AsideLinkGroup
-        title="镜像使用帮助"
-        links={allDocsPosts.filter((post) =>
-          post.url.startsWith('/docs/mirrors/'),
-        )}
-        pathname={pathname}
-      />
-      <AsideLinkGroup
-        title="服务使用指南"
-        links={allDocsPosts.filter((post) =>
-          post.url.startsWith('/docs/services/'),
-        )}
-        pathname={pathname}
-      />
-      <AsideLinkGroup
-        title="其他文档"
-        links={allDocsPosts.filter((post) =>
-          post.url.startsWith('/docs/others/'),
-        )}
-        pathname={pathname}
-      />
+      <AsideLinkGroup title="归档" links={allNewsPosts} pathname={pathname} />
     </div>
   );
 }

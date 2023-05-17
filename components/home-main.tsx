@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { CloudIcon, HomeIcon, SearchIcon } from 'lucide-react';
+import { CloudIcon, CommandIcon, HomeIcon, SearchIcon } from 'lucide-react';
 import { Breadcrumb, Checkbox } from 'flowbite-react';
 
 import useSWR, { SWRConfig, useSWRConfig } from 'swr';
@@ -49,9 +49,14 @@ type FilesProps = {
   mirrorsPath: string;
   mirrorConfig: MirrorConfig;
   filter: Filter;
+  searchDownload?: string;
 };
 
 const localStorageProvider = () => {
+  if (typeof window === 'undefined') {
+    return new Map();
+  }
+
   // When initializing, we restore the data from `localStorage` into a map.
   const map = new Map<any, any>(
     JSON.parse(localStorage.getItem('app-cache') || '[]'),
@@ -65,6 +70,22 @@ const localStorageProvider = () => {
 
   // We still use the map for write & read for performance.
   return map;
+};
+
+type File = {
+  name: string;
+  type: string;
+  mtime: string;
+  size?: number;
+};
+
+const sizeToTGMKByte = (bytes: number) => {
+  if (bytes === 0) return '0 B';
+  let k = 1024,
+    sizes = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'],
+    i = Math.floor(Math.log(bytes) / Math.log(k));
+
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 };
 
 function Files(props: FilesProps) {
@@ -111,7 +132,9 @@ function Files(props: FilesProps) {
     );
     for (let i = 0; i < parts.length; i++) {
       const part = parts[i];
-      const url = `/?mirrors=${parts.slice(0, i + 1).join('/')}/`;
+      const url = `/?mirrors=${encodeURIComponent(
+        parts.slice(0, i + 1).join('/') + '/',
+      )}`;
       items.push(
         <span key={`${i}-slash`} className="mx-2 md:mx-3 text-gray-400">
           /
@@ -143,11 +166,45 @@ function Files(props: FilesProps) {
     }
     return items;
   };
+  const downloadFile = files?.find(
+    (file: File) => file.name === props.searchDownload,
+  );
   return (
     <SWRConfig value={{ provider: localStorageProvider }}>
       <Breadcrumb className="flex px-3 md:px-5 py-2 mb-4 text-xs md:text-base text-gray-700 border border-gray-200 rounded-lg bg-gray-50 overflow-x-scroll whitespace-nowrap">
         {BreadcrumbItems()}
       </Breadcrumb>
+      {props.searchDownload && downloadFile && (
+        <div className="w-full mb-4 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+          <div className="flex flex-col items-center py-6 px-6">
+            <h5 className="mb-1 mx-auto w-full text-xl font-medium text-gray-900 dark:text-white text-center">
+              正在请求下载{' '}
+              <span className="text-sky-900">{props.searchDownload}</span> 文件
+            </h5>
+            <span className="text-sm text-gray-500 dark:text-gray-400">
+              {downloadFile?.size
+                ? '文件大小：' + sizeToTGMKByte(downloadFile?.size)
+                : '无法估计文件大小'}
+            </span>
+            <div className="flex mt-2 space-x-3 md:mt-4">
+              <a
+                className="inline-flex items-center px-4 py-1.5 text-sm font-medium text-center text-white bg-sky-700 rounded-lg hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800"
+                href={`/${props.mirrorsPath}${props.searchDownload}`}
+                download
+              >
+                确认下载
+              </a>
+              <Link
+                className="inline-flex items-center px-4 py-1 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
+                href={`/?mirrors=${encodeURIComponent(props.mirrorsPath)}`}
+                prefetch={false}
+              >
+                取消
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
       <FilesTable
         mirrorConfig={props.mirrorConfig}
         isLoading={isLoading}
@@ -175,7 +232,10 @@ export function HomeMain() {
     showProxy: true,
     showMirrorZ: false,
   });
-  let mirrorsPath = useSearchParams().get('mirrors');
+  const searchParams = useSearchParams();
+  if (!searchParams) return null;
+  let mirrorsPath = searchParams.get('mirrors');
+  const searchDownload = searchParams.get('download') || undefined;
   let mirrorConfig = undefined;
   if (mirrorsPath) {
     mirrorsPath = path.resolve('/' + mirrorsPath).slice(1) + '/';
@@ -245,29 +305,31 @@ export function HomeMain() {
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <SearchIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
           </div>
-          <span className="absolute inset-y-0 right-0 items-center pr-3 pointer-events-none text-xs font-semibold space-x-1 hidden md:flex">
+          <span className="absolute inset-y-0 right-0 items-center pr-3 pointer-events-none text-xs space-x-1 hidden md:flex">
             <kbd className="px-1 py-0.5 text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500">
-              Ctrl
+              <CommandIcon className="w-3 h-3 inline" />
             </kbd>
             <span>+</span>
-            <kbd className="px-1 py-0.5 text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500">
+            <kbd className="px-1.5 py-0.5 text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500">
               K
             </kbd>
           </span>
           <input
             type="text"
             id="table-filter"
-            className="block p-2 pl-8 pr-24 text-sm w-full text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-sky-500 focus:border-sky-500"
+            className="block p-2 px-8 md:pr-20 text-sm w-full text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-sky-500 focus:border-sky-500"
             placeholder={mirrorsPath && mirrorConfig ? '查找文件' : '查找镜像'}
             onChange={(e) => {
               setFilter({ ...filter, name: e.target.value });
             }}
+            autoFocus
           />
         </div>
       </div>
       {mirrorsPath && mirrorConfig ? (
         <Files
           mirrorsPath={mirrorsPath}
+          searchDownload={searchDownload}
           mirrorConfig={mirrorConfig}
           filter={filter}
         />

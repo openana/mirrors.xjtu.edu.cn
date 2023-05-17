@@ -31,7 +31,10 @@ function getMirrorInfo(config: MirrorConfig) {
         </div>
       ) : (
         <div className="whitespace-nowrap font-medium text-sky-700 hover:underline hover:text-sky-900 transition-colors">
-          <Link href={`/?mirrors=${name}/`} prefetch={false}>
+          <Link
+            href={`/?mirrors=${encodeURIComponent(name + '/')}`}
+            prefetch={false}
+          >
             {config.title}
           </Link>
         </div>
@@ -180,7 +183,7 @@ export function MirrorsTable(props: MirrorsTableProps) {
           <th scope="col" className="px-4 md:px-6 py-3">
             Name
           </th>
-          <th scope="col" className="px-4 md:px-6 py-3 w-40 md:w-56">
+          <th scope="col" className="px-4 md:px-6 py-3 w-40 md:w-60">
             Last Update
           </th>
         </tr>

@@ -70,6 +70,11 @@ export const mirrorConfigs: MirrorConfig[] = [
     desc: 'Cygwin is a Unix-like environment and command-line interface for Microsoft Windows. Cygwin\'s purpose is expressed in its motto: "Get that Linux feeling – on Windows".',
   },
   {
+    alias: ['debian'],
+    title: 'Debian',
+    desc: 'Debian',
+  },
+  {
     alias: ['debian-cd'],
     title: 'Debian CD',
     desc: 'Debian CD',

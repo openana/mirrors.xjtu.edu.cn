@@ -12,7 +12,7 @@ export const siteConfig: SiteConfig = {
         activeSelector: '/docs/',
       },
       { title: '新闻公告', href: '/news/latest/', activeSelector: '/news/' },
-      { title: '更多服务', href: '/services/', activeSelector: '/services/' },
+      // { title: '更多服务', href: '/services/', activeSelector: '/services/' },
       { title: '关于', href: '/about/', activeSelector: '/about/' },
     ],
   },
@@ -29,9 +29,9 @@ export const siteConfig: SiteConfig = {
     },
     links: [
       { title: '关于', href: '/about/' },
-      { title: '服务状态', href: '/status/' },
-      { title: '隐私政策', href: '/docs/others/privacy-policy/' },
-      { title: '使用条款', href: '/docs/others/terms-of-service/' },
+      // { title: '服务状态', href: '/status/' },
+      { title: '隐私政策', href: '/privacy-policy/' },
+      { title: '服务条款', href: '/terms-of-service/' },
     ],
   },
 };

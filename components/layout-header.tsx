@@ -9,6 +9,7 @@ import { type SiteHeaderConfig, type SitePageConfig } from '@/config/types';
 
 function NavbarLink({ page }: { page: SitePageConfig }) {
   const pathname = usePathname();
+  if (!pathname) return null;
   // TODO: fix this
   // const { isOpen, setIsOpen } = useNavbarContext();
   return (
@@ -33,7 +34,7 @@ type LayoutHeaderProps = {
 
 export function LayoutHeader(props: LayoutHeaderProps) {
   return (
-    <div className="sticky top-0 z-40 flex-none mx-auto w-full bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+    <div className="z-40 flex-none mx-auto w-full bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
       <Navbar>
         <Navbar.Brand as={Link} className="h-12" href="/">
           <span className="self-center text-2xl font-medium whitespace-nowrap text-sky-700 dark:text-white">

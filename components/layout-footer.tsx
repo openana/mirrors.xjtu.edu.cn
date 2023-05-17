@@ -34,10 +34,6 @@ const FooterLink = ({ title, href }: FooterLinkProps) => (
     className="hover:text-neutral-700 hover:underline"
     title={title}
     href={href}
-    {...(href.startsWith('//') && {
-      target: '_blank',
-      rel: 'noopener noreferrer',
-    })}
   />
 );
 

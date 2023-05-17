@@ -24,7 +24,6 @@ import {
 } from 'lucide-react';
 import path from 'path';
 import { MirrorConfig } from '@/config/mirrors';
-import { useState } from 'react';
 
 const sizeToTGMKByte = (bytes: number) => {
   if (bytes === 0) return '0 B';
@@ -114,20 +113,26 @@ function TableRow({ mirrorsPath, item, linkTo }: TableRowProps) {
         {item.type === 'directory' ? (
           <Link
             className="text-sky-700 transition-colors hover:text-sky-900 hover:underline"
-            href={`/?mirrors=${path.resolve(
-              mirrorsPath + (linkTo ? linkTo : item.name),
-            )}/`}
+            href={`/?mirrors=${encodeURIComponent(
+              path.resolve(mirrorsPath + (linkTo ? linkTo : item.name)) + '/',
+            )}`}
             prefetch={false}
           >
             {prefixIcon}
             {item.name}/{suffixIcon}
           </Link>
         ) : (
-          <span>
+          <Link
+            className="text-sky-700 transition-colors hover:text-sky-900 hover:underline"
+            href={`/?mirrors=${encodeURIComponent(
+              mirrorsPath,
+            )}&download=${encodeURIComponent(item.name)}`}
+            prefetch={false}
+          >
             {prefixIcon}
             {item.name}
             {suffixIcon}
-          </span>
+          </Link>
         )}
       </td>
       <td className="pl-2 pr-4 md:pr-6 py-2 text-end">
