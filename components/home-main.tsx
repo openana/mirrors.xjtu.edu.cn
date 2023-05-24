@@ -32,7 +32,7 @@ function Mirrors(props: MirrorsProps) {
       });
     const interval = setInterval(() => {
       setCounter(!counter);
-    }, 300000);
+    }, 30000);
     return () => clearInterval(interval);
   }, [counter]);
 
