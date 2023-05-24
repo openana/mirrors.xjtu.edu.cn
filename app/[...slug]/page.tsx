@@ -50,10 +50,19 @@ export default function PostPage({ params }: PostPageProps) {
   }
 
   return (
-    <div className="bg-white dark:bg-gray-900">
-      <div className="max-w-screen-xl w-full flex mx-auto p-4 space-x-6">
-        <MDXContent code={post.body.code} />
+    <div className="max-w-screen-xl w-full mx-auto p-4">
+      <div className="pb-4 mb-8 border-b border-gray-200 dark:border-gray-800">
+        <h1
+          className="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+          id="content"
+        >
+          {post.title}
+        </h1>
+        <p className="mb-4 text-lg text-gray-600 dark:text-gray-400">
+          {post.excerpt}
+        </p>
       </div>
+      <MDXContent code={post.body.code} />
     </div>
   );
 }

@@ -305,7 +305,7 @@ export function HomeMain() {
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <SearchIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
           </div>
-          <span className="absolute inset-y-0 right-0 items-center pr-3 pointer-events-none text-xs space-x-1 hidden md:flex">
+          {/* <span className="absolute inset-y-0 right-0 items-center pr-3 pointer-events-none text-xs space-x-1 hidden md:flex">
             <kbd className="px-1 py-0.5 text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500">
               <CommandIcon className="w-3 h-3 inline" />
             </kbd>
@@ -313,11 +313,12 @@ export function HomeMain() {
             <kbd className="px-1.5 py-0.5 text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500">
               K
             </kbd>
-          </span>
+          </span> */}
           <input
             type="text"
             id="table-filter"
-            className="block p-2 px-8 md:pr-20 text-sm w-full text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-sky-500 focus:border-sky-500"
+            // className="block p-2 px-8 md:pr-20 text-sm w-full text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-sky-500 focus:border-sky-500"
+            className="block p-2 px-8 text-sm w-full text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-sky-500 focus:border-sky-500"
             placeholder={mirrorsPath && mirrorConfig ? '查找文件' : '查找镜像'}
             onChange={(e) => {
               setFilter({ ...filter, name: e.target.value });

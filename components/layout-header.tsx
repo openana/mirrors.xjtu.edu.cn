@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Navbar } from 'flowbite-react';
-import { useNavbarContext } from 'flowbite-react/lib/esm/components/Navbar/NavbarContext';
 
 import { type SiteHeaderConfig, type SitePageConfig } from '@/config/types';
 
