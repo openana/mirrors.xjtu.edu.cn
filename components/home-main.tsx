@@ -228,7 +228,7 @@ type Filter = {
 export function HomeMain() {
   const [filter, setFilter] = useState<Filter>({
     name: '',
-    showGit: true,
+    showGit: false,
     showProxy: true,
     showMirrorZ: false,
   });

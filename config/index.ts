@@ -29,7 +29,7 @@ export const siteConfig: SiteConfig = {
     },
     links: [
       { title: '关于', href: '/about/' },
-      { title: '服务状态', href: '/status/' },
+      { title: '同步状态', href: '/status/' },
       // { title: '隐私政策', href: '/privacy-policy/' },
       // { title: '服务条款', href: '/terms-of-service/' },
     ],

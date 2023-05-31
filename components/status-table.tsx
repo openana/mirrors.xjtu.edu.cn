@@ -1,10 +1,8 @@
 'use client';
 
-import Link from 'next/link';
-import { Loader2Icon, HelpCircleIcon } from 'lucide-react';
-import { formatDistanceToNow, getTime } from 'date-fns';
+import { Loader2Icon } from 'lucide-react';
+import { formatDistanceToNow } from 'date-fns';
 import { zhCN } from 'date-fns/locale';
-import { allDocsPosts } from 'contentlayer/generated';
 
 import { MirrorConfig, mirrorConfigs } from '@/config/mirrors';
 
@@ -27,7 +25,7 @@ function getMirrorInfo(config: MirrorConfig) {
   return (
     <div className="flex items-center w-full font-normal">
       <div className="whitespace-nowrap font-medium text-sky-900">
-        <span>{config.status?.name}</span>
+        <span>{config.display_only ? config.title : config.status?.name}</span>
       </div>
     </div>
   );
@@ -52,8 +50,6 @@ function TableRow(config: MirrorConfig) {
     switch (status) {
       case 'unknown':
         return '';
-      case 'git':
-        return 'Git 镜像';
       case 'proxy':
         return '代理访问';
       case 'mirrorz':
@@ -108,7 +104,6 @@ function TableRow(config: MirrorConfig) {
     }
   }
   const status = config.status;
-  console.log(status);
   const size = status?.size;
   return (
     <tr className={getClass(config.status?.status)}>
@@ -117,10 +112,12 @@ function TableRow(config: MirrorConfig) {
         {getTimeInfo(status?.status, status?.last_update_ts)}
       </td>
       <td className="px-2 py-1.5">
-        {getTimeInfo(status?.status, status?.next_schedule_ts)}
+        {status?.next_schedule_ts > 0 &&
+          getTimeInfo(status?.status, status?.next_schedule_ts)}
       </td>
       <td className="px-2 py-1.5">
-        {getTimeInfo(status?.status, status?.last_ended_ts)}
+        {status?.last_ended_ts > 0 &&
+          getTimeInfo(status?.status, status?.last_ended_ts)}
       </td>
       <td className="px-2 py-1.5">{status?.upstream}</td>
       <td className="px-2 py-1.5">
@@ -132,7 +129,7 @@ function TableRow(config: MirrorConfig) {
         )}
       </td>
       <td className="px-2 py-1.5 text-end">
-        {size === 'unknown' ? '未知' : size?.replace(/(\d+)([GMK])/, '$1 $2B')}
+        {size === 'unknown' ? '未知' : size?.replace(/(\d+)([TGMK])/, '$1 $2B')}
       </td>
     </tr>
   );
@@ -155,6 +152,25 @@ export function StatusTable(props: MirrorsTableProps) {
       const status = props.mirrors.find((i) => item.alias.includes(i.name));
       if (status) item.status = status;
     });
+    // add mirrors not in mirrorConfigs
+    props.mirrors
+      .filter(
+        (item) =>
+          !mirrorConfigs.find((i) => i.alias.includes(item.name)) &&
+          item.status !== undefined,
+      )
+      .forEach((item) => {
+        let config = {
+          alias: [item.name],
+          title: item.name,
+          status: item,
+          display_only: true,
+        };
+        if (item.name.endsWith('.git')) {
+          config.title = 'git/' + item.name;
+        }
+        mirrorConfigs.push(config);
+      });
   }
   const mirrors = mirrorConfigs
     .filter(

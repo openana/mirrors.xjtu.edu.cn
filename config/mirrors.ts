@@ -29,6 +29,11 @@ export const mirrorConfigs: MirrorConfig[] = [
     desc: 'Arch Linux is an independently developed, x86-64 general-purpose Linux distribution that strives to provide the latest stable versions of most software by following a rolling-release model. The default installation is a minimal base system, configured by the user to only add what is purposely required.',
   },
   {
+    alias: ['archlinuxcn'],
+    title: 'Arch Linux 中文社区',
+    desc: 'Arch Linux 中文社区软件仓库是由 Arch Linux 中文社区驱动的非官方软件仓库，包含许多官方仓库未提供的额外的软件包，以及已有软件的 git 版本等变种。一部分软件包的打包脚本来源于 AUR，但也有许多包与 AUR 不一样。',
+  },
+  {
     alias: ['centos'],
     title: 'CentOS',
     desc: 'CentOS (from Community Enterprise Operating System; also known as CentOS Linux) was a Linux distribution that provided a free and open-source community-supported computing platform, functionally compatible with its upstream source, Red Hat Enterprise Linux (RHEL). In January 2014, CentOS announced the official joining with Red Hat while staying independent from RHEL, under a new CentOS governing board.',
@@ -36,7 +41,7 @@ export const mirrorConfigs: MirrorConfig[] = [
   {
     alias: ['centos-vault'],
     title: 'CentOS Vault',
-    desc: 'CentOS Vault',
+    desc: 'CentOS (from Community Enterprise Operating System; also known as CentOS Linux) was a Linux distribution that provided a free and open-source community-supported computing platform, functionally compatible with its upstream source, Red Hat Enterprise Linux (RHEL). In January 2014, CentOS announced the official joining with Red Hat while staying independent from RHEL, under a new CentOS governing board.',
     display_only: true,
     status: {
       name: 'centos-vault',
@@ -72,17 +77,17 @@ export const mirrorConfigs: MirrorConfig[] = [
   {
     alias: ['debian'],
     title: 'Debian',
-    desc: 'Debian',
+    desc: 'Debian also known as Debian GNU/Linux, is a Linux distribution composed of free and open-source software, developed by the community-supported Debian Project, which was established by Ian Murdock on August 16, 1993.',
   },
   {
     alias: ['debian-cd'],
     title: 'Debian CD',
-    desc: 'Debian CD',
+    desc: 'Debian also known as Debian GNU/Linux, is a Linux distribution composed of free and open-source software, developed by the community-supported Debian Project, which was established by Ian Murdock on August 16, 1993.',
   },
   {
     alias: ['debian-security'],
     title: 'Debian Security',
-    desc: 'Debian Security',
+    desc: 'Debian also known as Debian GNU/Linux, is a Linux distribution composed of free and open-source software, developed by the community-supported Debian Project, which was established by Ian Murdock on August 16, 1993.',
   },
   {
     alias: ['deepin'],
@@ -112,7 +117,7 @@ export const mirrorConfigs: MirrorConfig[] = [
   {
     alias: ['homebrew-bottles'],
     title: 'Homebrew Bottles',
-    desc: 'Homebrew Bottles',
+    desc: "Homebrew is a free and open-source software package management system that simplifies the installation of software on Apple's operating system, macOS, as well as Linux. The name is intended to suggest the idea of building software on the Mac depending on the user's taste.",
     files: [{ path: '*', name: 'bottles', linkTo: '/' }],
   },
   {
@@ -133,12 +138,22 @@ export const mirrorConfigs: MirrorConfig[] = [
   {
     alias: ['kali-images'],
     title: 'Kali Images',
-    desc: 'Kali Images',
+    desc: 'Kali Linux is a Debian-derived Linux distribution designed for digital forensics and penetration testing. It is maintained and funded by Offensive Security.',
   },
   {
     alias: ['kernel'],
     title: 'Kernel',
     desc: 'Kernel',
+  },
+  {
+    alias: ['manjaro'],
+    title: 'Manjaro',
+    desc: 'Manjaro is a free and open-source Linux distribution based on the Arch Linux operating system that has a focus on user-friendliness and accessibility. It uses a rolling release update model and Pacman as its package manager.',
+  },
+  {
+    alias: ['manjaro-cd'],
+    title: 'Manjaro CD',
+    desc: 'Manjaro is a free and open-source Linux distribution based on the Arch Linux operating system that has a focus on user-friendliness and accessibility. It uses a rolling release update model and Pacman as its package manager.',
   },
   {
     alias: ['mongodb'],
@@ -158,7 +173,12 @@ export const mirrorConfigs: MirrorConfig[] = [
     status: {
       name: 'pypi',
       status: 'proxy',
+      last_ended_ts: -1,
       last_update_ts: -1,
+      last_schedule_ts: -1,
+      upstream:
+        'https://pypi.tuna.tsinghua.edu.cn/, https://mirrors.cloud.tencent.com/pypi/, https://pypi.org/',
+      size: 'N/A',
     },
   },
   {
@@ -169,7 +189,7 @@ export const mirrorConfigs: MirrorConfig[] = [
   {
     alias: ['raspberrypi-images'],
     title: 'Raspberry Pi Images',
-    desc: 'Raspberry Pi Images',
+    desc: 'Raspberry Pi is a series of small single-board computers (SBCs) developed in the United Kingdom by the Raspberry Pi Foundation in association with Broadcom. The Raspberry Pi project originally leaned towards the promotion of teaching basic computer science in schools. The original model became more popular than anticipated, selling outside its target market for uses such as robotics. It is widely used in many areas, such as for weather monitoring, because of its low cost, modularity, and open design.',
   },
   {
     alias: ['raspbian'],
@@ -189,19 +209,17 @@ export const mirrorConfigs: MirrorConfig[] = [
   {
     alias: ['ros'],
     title: 'ROS',
-    desc: 'ROS',
+    desc: 'ROS (Robot Operating System) provides libraries and tools to help software developers create robot applications. It provides hardware abstraction, device drivers, libraries, visualizers, message-passing, package management, and more. ROS is licensed under an open source, BSD license.',
+  },
+  {
+    alias: ['ros2'],
+    title: 'ROS 2',
+    desc: 'The Robot Operating System (ROS) is a set of software libraries and tools for building robot applications. From drivers and state-of-the-art algorithms to powerful developer tools, ROS has the open source tools you need for your next robotics project.',
   },
   {
     alias: ['ros2-rhel'],
     title: 'ROS 2 (RHEL)',
-    desc: 'ROS 2 for RHEL',
-    path: 'ros2/rhel',
-  },
-  {
-    alias: ['ros2-ubuntu'],
-    title: 'ROS 2 (Ubuntu)',
-    desc: 'ROS 2 for Ubuntu',
-    path: 'ros2/ubuntu',
+    desc: 'The Robot Operating System (ROS) is a set of software libraries and tools for building robot applications. From drivers and state-of-the-art algorithms to powerful developer tools, ROS has the open source tools you need for your next robotics project.',
   },
   {
     alias: ['rpmfusion'],
@@ -217,13 +235,13 @@ export const mirrorConfigs: MirrorConfig[] = [
   {
     alias: ['ubuntu-ports'],
     title: 'Ubuntu Ports',
-    desc: 'Ubuntu Ports.',
+    desc: 'Ubuntu is a Linux distribution based on Debian and composed mostly of free and open-source software. Ubuntu is officially released in three editions: Desktop, Server, and Core for Internet of things devices and robots.',
     files: [{ path: '*', name: 'ubuntu-ports', linkTo: '/' }],
   },
   {
     alias: ['ubuntu-releases'],
     title: 'Ubuntu Releases',
-    desc: 'Ubuntu Releases.',
+    desc: 'Ubuntu is a Linux distribution based on Debian and composed mostly of free and open-source software. Ubuntu is officially released in three editions: Desktop, Server, and Core for Internet of things devices and robots.',
     files: [{ path: '*', name: 'releases', linkTo: '/' }],
   },
   {

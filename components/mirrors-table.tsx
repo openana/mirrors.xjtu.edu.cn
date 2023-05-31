@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Loader2Icon, HelpCircleIcon } from 'lucide-react';
+import { Loader2Icon, HelpCircleIcon, GitForkIcon } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import { zhCN } from 'date-fns/locale';
 import { allDocsPosts } from 'contentlayer/generated';
@@ -22,6 +22,7 @@ type MirrorsTableProps = {
 
 function getMirrorInfo(config: MirrorConfig) {
   const name = config.status?.name;
+  const mirrorGit = config.title.endsWith('.git');
   const mirrorHelp = allDocsPosts.find((item) => item.alias?.includes(name));
   return (
     <div className="flex items-center w-full font-normal">
@@ -38,6 +39,11 @@ function getMirrorInfo(config: MirrorConfig) {
             {config.title}
           </Link>
         </div>
+      )}
+      {mirrorGit && (
+        <span>
+          <GitForkIcon className="inline-block w-4 h-4 ml-1 -mt-0.5 text-sky-700 hover:text-sky-900 transition-colors" />
+        </span>
       )}
       {mirrorHelp && (
         <Link
@@ -73,8 +79,6 @@ function TableRow(config: MirrorConfig) {
     switch (item.status) {
       case 'unknown':
         return '';
-      case 'git':
-        return 'Git 镜像';
       case 'proxy':
         return '代理访问';
       case 'mirrorz':
@@ -90,7 +94,6 @@ function TableRow(config: MirrorConfig) {
   }
   function getStatusInfo(item: MirrorStatus) {
     switch (item.status) {
-      case 'git':
       case 'proxy':
         return (
           <span className="bg-green-100 text-green-800 text-xs font-medium ml-2 px-2.5 py-0.5 rounded border border-green-200">
@@ -113,6 +116,12 @@ function TableRow(config: MirrorConfig) {
         return (
           <span className="bg-sky-100 text-sky-800 text-xs font-medium ml-2 px-2.5 py-0.5 rounded border border-sky-200">
             同步中
+          </span>
+        );
+      case 'paused':
+        return (
+          <span className="bg-neutral-100 text-neutral-800 text-xs font-medium ml-2 px-2.5 py-0.5 rounded border border-neutral-200">
+            暂停
           </span>
         );
     }
@@ -148,6 +157,27 @@ export function MirrorsTable(props: MirrorsTableProps) {
       const status = props.mirrors.find((i) => item.alias.includes(i.name));
       if (status) item.status = status;
     });
+    // add mirrors not in mirrorConfigs
+    props.mirrors
+      .filter(
+        (item) =>
+          !mirrorConfigs.find((i) => i.alias.includes(item.name)) &&
+          item.status !== undefined,
+      )
+      .forEach((item) => {
+        let config: MirrorConfig = {
+          alias: [item.name],
+          title: item.name,
+          status: item,
+          display_only: true,
+        };
+        if (item.name.endsWith('.git')) {
+          config.title = 'git/' + item.name;
+          config.desc = 'Git 镜像';
+          config.alias.push(config.title);
+        }
+        mirrorConfigs.push(config);
+      });
   }
   const mirrors = mirrorConfigs
     .filter(
@@ -160,7 +190,7 @@ export function MirrorsTable(props: MirrorsTableProps) {
       ) {
         return false;
       }
-      if (!props.filter.showGit && item.status?.status === 'git') {
+      if (!props.filter.showGit && item.title.endsWith('.git')) {
         return false;
       }
       if (!props.filter.showProxy && item.status?.status === 'proxy') {
