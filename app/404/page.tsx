@@ -1,7 +1,7 @@
 import { FileQuestion } from 'lucide-react';
 import Link from 'next/link';
 
-export default function NotFound() {
+export default function Page() {
   return (
     <div className="flex h-full flex-col items-center justify-center space-y-4">
       <FileQuestion className="h-24 w-24 text-slate-700 dark:text-rose-100" />
