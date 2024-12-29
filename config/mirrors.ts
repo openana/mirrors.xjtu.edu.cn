@@ -161,6 +161,11 @@ export const mirrorConfigs: MirrorConfig[] = [
     desc: 'MongoDB is a source-available cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with optional schemas. MongoDB is developed by MongoDB Inc. and licensed under the Server Side Public License (SSPL) which is deemed non-free by several distributions. MongoDB is a member of the MACH Alliance.',
   },
   {
+    alias: ['openeuler'],
+    title: 'OpenEuler',
+    desc: 'EulerOS is a commercial Linux distribution developed by Huawei based on Red Hat Enterprise Linux to provide an operating system for server and cloud environments.',
+  },
+  {
     alias: ['openwrt'],
     title: 'OpenWrt',
     desc: 'OpenWrt (from open wireless router) is an open-source project for embedded operating systems based on Linux, primarily used on embedded devices to route network traffic. The main components are Linux, util-linux, musl, and BusyBox. All components have been optimized to be small enough to fit into the limited storage and memory available in home routers.',
