@@ -192,7 +192,7 @@ export const mirrorConfigs: MirrorConfig[] = [
     desc: 'Raspberry Pi is a series of small single-board computers (SBCs) developed in the United Kingdom by the Raspberry Pi Foundation in association with Broadcom. The Raspberry Pi project originally leaned towards the promotion of teaching basic computer science in schools. The original model became more popular than anticipated, selling outside its target market for uses such as robotics. It is widely used in many areas, such as for weather monitoring, because of its low cost, modularity, and open design.',
   },
   {
-    alias: ['raspberrypi-images'],
+    alias: ['raspberry-pi-os-images'],
     title: 'Raspberry Pi Images',
     desc: 'Raspberry Pi is a series of small single-board computers (SBCs) developed in the United Kingdom by the Raspberry Pi Foundation in association with Broadcom. The Raspberry Pi project originally leaned towards the promotion of teaching basic computer science in schools. The original model became more popular than anticipated, selling outside its target market for uses such as robotics. It is widely used in many areas, such as for weather monitoring, because of its low cost, modularity, and open design.',
   },
@@ -253,6 +253,11 @@ export const mirrorConfigs: MirrorConfig[] = [
     alias: ['vim'],
     title: 'Vim',
     desc: "Vim (a contraction of Vi IMproved) is a free and open-source, screen-based text editor program. It is an improved clone of Bill Joy's vi. Vim's author, Bram Moolenaar, derived Vim from a port of the Stevie editor for Amiga and released a version to the public in 1991. Vim is designed for use both from a command-line interface and as a standalone application in a graphical user interface.",
+  },
+  {
+    alias: ['winget-source'],
+    title: 'Winget-source',
+    desc: "The Windows Package Manager (also known as winget) is a free and open-source package manager designed by Microsoft for Windows 10 and Windows 11. It consists of a command-line utility and a set of services for installing applications. Independent software vendors can use it as a distribution channel for their software packages.",
   },
   {
     alias: ['zabbix'],
