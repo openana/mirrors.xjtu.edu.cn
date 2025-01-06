@@ -1,0 +1,93 @@
+---
+title: EPEL 软件仓库镜像使用帮助
+short_title: EPEL 软件仓库
+excerpt: 西安交通大学软件镜像站 EPEL 软件仓库镜像使用帮助。
+alias:
+  - epel
+---
+
+## 基本信息
+
+EPEL (Extra Packages for Enterprise Linux，企业版 Linux 的额外软件包) 是 Fedora 小组维护的一个软件仓库项目，为 RHEL/CentOS 提供他们默认不提供的软件包。这个源兼容 RHEL 及像 CentOS 和 Scientific Linux 这样的衍生版本。
+
+### 收录架构
+
+- i386
+- x86_64
+- SRPMS
+- ppc
+
+### 收录版本
+
+- 4-7
+
+## 使用说明
+
+此源适用于 Red Hat, CentOS, Scientific Linux 版本 5 和 6
+
+若存在则先备份/etc/yum.repos.d/epel.repo 和/etc/yum.repos.d/epel-testing.repo
+
+下载下面的两个文件到/etc/yum.repos.d/
+
+- epel.repo
+
+```text
+[epel]
+name=Extra Packages for Enterprise Linux 6 - $basearch
+baseurl=http://mirrors.xjtu.edu.cn/epel/6/$basearch
+failovermethod=priority
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
+
+[epel-debuginfo]
+name=Extra Packages for Enterprise Linux 6 - $basearch - Debug
+baseurl=http://mirrors.xjtu.edu.cn/epel/6/$basearch/debug
+failovermethod=priority
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
+gpgcheck=1
+
+[epel-source]
+name=Extra Packages for Enterprise Linux 6 - $basearch - Source
+baseurl=http://mirrors.xjtu.edu.cn/epel/6/SRPMS
+failovermethod=priority
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
+gpgcheck=1
+```
+
+- epel-testing.repo
+
+```text
+[epel-testing]
+name=Extra Packages for Enterprise Linux 6 - Testing - $basearch
+baseurl=http://mirrors.xjtu.edu.cn/epel/testing/6/$basearch
+failovermethod=priority
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
+
+[epel-testing-debuginfo]
+name=Extra Packages for Enterprise Linux 6 - Testing - $basearch - Debug
+baseurl=http://mirrors.xjtu.edu.cn/epel/testing/6/$basearch/debug
+failovermethod=priority
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
+gpgcheck=1
+
+[epel-testing-source]
+name=Extra Packages for Enterprise Linux 6 - Testing - $basearch - Source
+baseurl=http://mirrors.xjtu.edu.cn/epel/testing/6/SRPMS
+failovermethod=priority
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
+gpgcheck=1
+```
+
+最后运行`yum makecache`更新缓存
+
+## 相关网站
+
+- Wiki http://fedoraproject.org/wiki/EPEL
+- FAQ http://fedoraproject.org/wiki/EPEL/faq

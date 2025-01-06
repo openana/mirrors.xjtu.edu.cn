@@ -1,0 +1,32 @@
+---
+title: PyPI 软件仓库镜像使用帮助
+short_title: PyPI 软件仓库
+excerpt: 西安交通大学软件镜像站 PyPI 软件仓库镜像使用帮助。
+alias:
+  - pypi
+---
+
+PyPI 软件仓库镜像当前通过代理缓存的形式，提供对 PyPI 软件仓库的访问。目前 PyPI 软件仓库镜像仅面向校内用户开放，校外用户将被重定向至 PyPI 官方软件仓库。
+
+请注意：当出现类似 `WARNING: Retrying [...] Read timed out. [...] /pypi/simple/[...]` 的提示时，说明当前访问的软件包较大且未命中缓存，请耐心等待自动重试。
+
+### 临时使用
+
+```shell
+pip install -i https://mirrors.xjtu.edu.cn/pypi/simple [package]
+```
+
+### 设为默认
+
+升级 pip 到最新的版本 (>=10.0.0) 后使用以下命令进行配置：
+
+```shell
+python -m pip install --upgrade pip
+pip config set global.index-url https://mirrors.xjtu.edu.cn/pypi/simple
+```
+
+如果当前的网络环境较差，无法连接到 pip 默认软件仓库，可以尝试临时使用本镜像站来升级 pip：
+
+```shell
+python -m pip install -i https://mirrors.xjtu.edu.cn/pypi/simple --upgrade pip
+```

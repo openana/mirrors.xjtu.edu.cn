@@ -1,0 +1,47 @@
+/* styles for remark-gfm plugin */
+
+ul.contains-task-list {
+  @apply list-none pl-0;
+}
+
+ul.contains-task-list li ul {
+  @apply pl-4;
+}
+
+/* styles for rehype-autolink-headings plugin */
+
+a[href^='#'] {
+  @apply inline-block;
+}
+
+:is(h1, h2, h3) a > svg {
+  @apply opacity-0 transition-opacity text-sky-700;
+}
+
+:is(h1, h2, h3):hover a > svg {
+  @apply opacity-100;
+}
+
+h1 a > svg {
+  @apply ml-2 h-6 w-6;
+}
+
+h2 a > svg {
+  @apply ml-2 h-5 w-5;
+}
+
+h3 a > svg {
+  @apply ml-1 h-4 w-4;
+}
+
+/* styles for rehype-pretty-code plugin */
+
+code::before,
+code::after {
+  @apply !content-none;
+}
+
+code,
+pre {
+  @apply !bg-sky-50;
+}
