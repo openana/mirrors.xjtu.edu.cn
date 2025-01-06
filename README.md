@@ -1,1 +1,0 @@
-# mirrors.xjtu.edu.cn
