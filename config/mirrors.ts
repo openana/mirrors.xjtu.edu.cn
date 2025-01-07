@@ -151,6 +151,11 @@ export const mirrorConfigs: MirrorConfig[] = [
     desc: 'Manjaro is a free and open-source Linux distribution based on the Arch Linux operating system that has a focus on user-friendliness and accessibility. It uses a rolling release update model and Pacman as its package manager.',
   },
   {
+    alias: ['manjaro-cd'],
+    title: 'Manjaro CD',
+    desc: 'Manjaro is a free and open-source Linux distribution based on the Arch Linux operating system that has a focus on user-friendliness and accessibility. It uses a rolling release update model and Pacman as its package manager.',
+  },
+  {
     alias: ['mongodb'],
     title: 'MongoDB',
     desc: 'MongoDB is a source-available cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with optional schemas. MongoDB is developed by MongoDB Inc. and licensed under the Server Side Public License (SSPL) which is deemed non-free by several distributions. MongoDB is a member of the MACH Alliance.',
